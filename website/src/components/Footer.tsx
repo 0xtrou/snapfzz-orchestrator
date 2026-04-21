@@ -45,7 +45,7 @@ export function Footer() {
                 <XIcon className="block" />
               </a>
               <a
-                href="https://github.com/agentscope-ai/QwenPaw"
+                href="https://github.com/agentscope-ai/Orchestrator"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={t("footer.social.github")}

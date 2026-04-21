@@ -459,8 +459,8 @@ class QwenPawACPAgent(Agent):
                 ),
             ),
             agent_info=Implementation(
-                name="qwenpaw",
-                title="QwenPaw",
+                name="orchestrator",
+                title="Orchestrator",
                 version=__version__,
             ),
         )

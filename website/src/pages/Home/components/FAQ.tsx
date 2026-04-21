@@ -104,7 +104,7 @@ export function FAQ() {
                     <li>
                       {t("homeFaq.quickStart.update.li5bPrefix")}{" "}
                       <a
-                        href="https://github.com/agentscope-ai/QwenPaw/releases"
+                        href="https://github.com/agentscope-ai/Orchestrator/releases"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-(--color-primary) no-underline transition hover:brightness-110"
@@ -148,7 +148,7 @@ export function FAQ() {
             <>
               {t("homeFaq.quickStart.upgrade.p1")}{" "}
               <a
-                href="https://github.com/agentscope-ai/QwenPaw/releases"
+                href="https://github.com/agentscope-ai/Orchestrator/releases"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-(--color-primary) no-underline transition hover:brightness-110"
@@ -192,7 +192,7 @@ export function FAQ() {
                 {t("homeFaq.features.models.p4Prefix")}{" "}
                 <code>qwenpaw models</code> {t("homeFaq.features.models.p4Mid")}{" "}
                 <Link
-                  to="/docs/cli#qwenpaw-models"
+                  to="/docs/cli#orchestrator-models"
                   className="text-(--color-primary) no-underline transition hover:brightness-110"
                 >
                   {t("homeFaq.features.models.cliLink")}
@@ -343,7 +343,7 @@ export function FAQ() {
                 <li>
                   {t("homeFaq.troubleshooting.help.s2Prefix")}{" "}
                   <a
-                    href="https://github.com/agentscope-ai/QwenPaw/issues"
+                    href="https://github.com/agentscope-ai/Orchestrator/issues"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-(--color-primary) no-underline transition hover:brightness-110"
@@ -375,12 +375,12 @@ export function FAQ() {
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, amount: 0.2 }}
-      aria-labelledby="qwenpaw-faq-heading"
+      aria-labelledby="orchestrator-faq-heading"
     >
       <div className="mx-auto max-w-7xl">
         <div className="grid gap-8 md:grid-cols-[40%_60%] md:gap-12">
           <motion.div variants={itemVariants}>
-            <h2 id="qwenpaw-faq-heading" className={sectionStyles.title}>
+            <h2 id="orchestrator-faq-heading" className={sectionStyles.title}>
               {t("homeFaq.title")}
             </h2>
             <p

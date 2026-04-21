@@ -1,6 +1,6 @@
 # Channels
 
-A **channel** is where you talk to QwenPaw: connect DingTalk and it replies
+A **channel** is where you talk to Orchestrator: connect DingTalk and it replies
 in DingTalk; same for QQ, etc. If that term is new, see [Introduction](./intro).
 
 Two ways to configure channels:
@@ -51,7 +51,7 @@ Step-by-step:
 
    ![client](https://img.alicdn.com/imgextra/i3/O1CN01JsRrwx1hJImLfM7O1_!!6000000004256-2-tps-2809-1585.png)
 
-7. (Optional) **Add your server's IP to the whitelist** — this is required for features that call the DingTalk Open API (e.g. downloading images and files sent by users). Go to **"Security & Compliance → IP Whitelist"** in your app settings and add the public IP of the machine running QwenPaw. You can find your public IP by running `curl ifconfig.me` in a terminal. If the IP is not whitelisted, image and file downloads will fail with a `Forbidden.AccessDenied.IpNotInWhiteList` error.
+7. (Optional) **Add your server's IP to the whitelist** — this is required for features that call the DingTalk Open API (e.g. downloading images and files sent by users). Go to **"Security & Compliance → IP Whitelist"** in your app settings and add the public IP of the machine running Orchestrator. You can find your public IP by running `curl ifconfig.me` in a terminal. If the IP is not whitelisted, image and file downloads will fail with a `Forbidden.AccessDenied.IpNotInWhiteList` error.
 
 ### Link the app
 
@@ -97,7 +97,7 @@ In your agent's `agent.json` (e.g., `~/.qwenpaw/workspaces/default/agent.json`),
 >
 > - Set `filter_tool_messages: true` if you want to hide tool execution details in the chat.
 > - AI Card mode: set `message_type` to `card`, then configure `card_template_id`; keep `card_template_key` consistent with your DingTalk template variable (default `content`).
-> - `robot_code` is recommended in group scenarios; if empty, QwenPaw falls back to `client_id`.
+> - `robot_code` is recommended in group scenarios; if empty, Orchestrator falls back to `client_id`.
 
 Save the file; if the app is already running, the channel will reload. Otherwise run `qwenpaw app`.
 
@@ -143,7 +143,7 @@ The Feishu channel receives messages via **WebSocket long connection** (no publi
 
 3. Fill **App ID** and **App Secret** in `agent.json` (see "Fill agent.json" below) and save
 
-4. Run **`qwenpaw app`** to start QwenPaw
+4. Run **`qwenpaw app`** to start Orchestrator
 
 5. Back in the Feishu console, enable **Bot** under **Add Features**
 
@@ -258,7 +258,7 @@ The JSON in step 6 grants the following permissions (app identity) for messaging
 | Get/upload image and file resources | im:resource                    | App     | -             |
 | **Read contact as app**             | **contact:user.base:readonly** | **App** | **See below** |
 
-> **User display name (recommended):** To show **user nicknames** in sessions and logs (e.g. "张三#1d1a" instead of "unknown#1d1a"), enable the contact read permission **Read contact as app** (`contact:user.base:readonly`). Without it, Feishu only returns identity fields (e.g. open_id) and not the user's name, so QwenPaw cannot resolve nicknames. After enabling, publish or update the app version so the permission takes effect.
+> **User display name (recommended):** To show **user nicknames** in sessions and logs (e.g. "张三#1d1a" instead of "unknown#1d1a"), enable the contact read permission **Read contact as app** (`contact:user.base:readonly`). Without it, Feishu only returns identity fields (e.g. open_id) and not the user's name, so Orchestrator cannot resolve nicknames. After enabling, publish or update the app version so the permission takes effect.
 
 ### Add the bot to favorites
 
@@ -302,7 +302,7 @@ The app polls the local iMessage database for new messages and sends replies on 
    > cp ./bin/imsg /usr/local/bin/
    > ```
 
-3. For QwenPaw to read iMessage data, **Terminal** (or the app you use to run `qwenpaw app`) and **Messages** need **Full Disk Access** (System Settings → Privacy & Security → Full Disk Access).
+3. For Orchestrator to read iMessage data, **Terminal** (or the app you use to run `qwenpaw app`) and **Messages** need **Full Disk Access** (System Settings → Privacy & Security → Full Disk Access).
 
 4. Set the iMessage database path. The default is `~/Library/Messages/chat.db`; use this unless you've moved the database. You can configure it in either of these ways:
 
@@ -436,7 +436,7 @@ Find `channels.discord` in your agent's `agent.json` (e.g., `~/.qwenpaw/workspac
 
 5. In **Developer settings**, get **AppID** and **AppSecret** (ClientSecret) and fill them into config (see below). Add your server’s **IP to the whitelist** — only whitelisted IPs can call the Open API outside sandbox.
 
-   > **Tip:** If you are using ModelScope Creative Space to deploy QwenPaw, the IP whitelist for QQ channel should be: `47.92.200.108`
+   > **Tip:** If you are using ModelScope Creative Space to deploy Orchestrator, the IP whitelist for QQ channel should be: `47.92.200.108`
 
 ![1](https://img.alicdn.com/imgextra/i4/O1CN012UQWI21cnvBAUcz54_!!6000000003646-2-tps-4082-2126.png)
 
@@ -476,16 +476,16 @@ You can also fill them in the Console UI.
 
 ## OneBot v11 (NapCat / QQ full protocol)
 
-The **OneBot** channel connects QwenPaw to [NapCat](https://github.com/NapNeko/NapCatQQ), [go-cqhttp](https://github.com/Mrs4s/go-cqhttp), [Lagrange](https://github.com/LagrangeDev/Lagrange.Core), or any other [OneBot v11](https://github.com/botuniverse/onebot-11) compatible implementation via **reverse WebSocket**.
+The **OneBot** channel connects Orchestrator to [NapCat](https://github.com/NapNeko/NapCatQQ), [go-cqhttp](https://github.com/Mrs4s/go-cqhttp), [Lagrange](https://github.com/LagrangeDev/Lagrange.Core), or any other [OneBot v11](https://github.com/botuniverse/onebot-11) compatible implementation via **reverse WebSocket**.
 
 Unlike the built-in QQ channel (which uses the official QQ Bot API with limited features), OneBot v11 provides **full QQ protocol** support: personal accounts, group messages without @mention, rich media, and more.
 
 ### How it works
 
-QwenPaw starts a WebSocket server; the OneBot implementation (e.g. NapCat) connects to it as a client:
+Orchestrator starts a WebSocket server; the OneBot implementation (e.g. NapCat) connects to it as a client:
 
 ```
-NapCat  ──reverse WS──▶  QwenPaw (:6199/ws)
+NapCat  ──reverse WS──▶  Orchestrator (:6199/ws)
 ```
 
 ### Setup NapCat
@@ -504,7 +504,7 @@ NapCat  ──reverse WS──▶  QwenPaw (:6199/ws)
 
 3. Go to **Network Config** → **New** → **WebSocket Client** (reverse WS):
    - URL: `ws://<qwenpaw_host>:6199/ws`
-   - Access Token: same as `access_token` in QwenPaw config (optional)
+   - Access Token: same as `access_token` in Orchestrator config (optional)
 
 ### Fill agent.json
 
@@ -527,7 +527,7 @@ NapCat  ──reverse WS──▶  QwenPaw (:6199/ws)
 | `access_token`           | string | `""`      | Optional token for authentication (must match NapCat config)                                             |
 | `share_session_in_group` | bool   | `false`   | If `true`, all members in a group share one session; if `false`, each member gets an independent session |
 
-> **Docker Compose tip:** When running QwenPaw and NapCat in Docker Compose, set the NapCat reverse WS URL to `ws://qwenpaw:6199/ws` (using the service name).
+> **Docker Compose tip:** When running Orchestrator and NapCat in Docker Compose, set the NapCat reverse WS URL to `ws://qwenpaw:6199/ws` (using the service name).
 
 **Multimodal support:**
 
@@ -539,7 +539,7 @@ NapCat  ──reverse WS──▶  QwenPaw (:6199/ws)
 | Video | 🚧      | ✓    |
 | File  | ✓       | ✓    |
 
-> **Note:** Audio and video are received at the channel level, but require QwenPaw's transcription provider (`transcription_provider_type`) to be configured for the LLM to process them. Without transcription, voice messages are shown as placeholders.
+> **Note:** Audio and video are received at the channel level, but require Orchestrator's transcription provider (`transcription_provider_type`) to be configured for the LLM to process them. Without transcription, voice messages are shown as placeholders.
 
 ---
 
@@ -627,7 +627,7 @@ The WeChat iLink Bot channel lets you run an AI bot via a **personal WeChat acco
 
 ### QR code login (recommended via Console)
 
-1. Open the QwenPaw Web Console and go to **Settings → Channels → WeChat Personal (iLink)**.
+1. Open the Orchestrator Web Console and go to **Settings → Channels → WeChat Personal (iLink)**.
 2. Click **Get Login QR Code** and wait for the QR code to appear.
 3. Scan the QR code with your WeChat mobile app and confirm authorization.
 4. Once confirmed, the Bot Token is automatically filled in the form — click **Save**.
@@ -798,7 +798,7 @@ JSON message format
 
 2. Fuzzy match subscription and automatic push
 
-   Subscribe to the wildcard topic `/server/+/up`. Messages will be automatically pushed to the corresponding topic based on the client's `client_id`. For example, after a client pushes a message to `/server/client_a/up`, QwenPaw will push the message to `/client/client_b/down` after processing.
+   Subscribe to the wildcard topic `/server/+/up`. Messages will be automatically pushed to the corresponding topic based on the client's `client_id`. For example, after a client pushes a message to `/server/client_a/up`, Orchestrator will push the message to `/client/client_b/down` after processing.
 
    | subscribe_topic | publish_topic           |
    | --------------- | ----------------------- |
@@ -815,13 +815,13 @@ JSON message format
    }
    ```
 
-   Messages will be pushed to `client/client_b/down` based on the `redirect_client_id` attribute, enabling cross-topic push. In IoT scenarios, with QwenPaw as the core, autonomous message pushing between multiple devices can be achieved according to individual requirements.
+   Messages will be pushed to `client/client_b/down` based on the `redirect_client_id` attribute, enabling cross-topic push. In IoT scenarios, with Orchestrator as the core, autonomous message pushing between multiple devices can be achieved according to individual requirements.
 
 ---
 
 ## Matrix
 
-The Matrix channel connects QwenPaw to any Matrix homeserver using the [matrix-nio](https://github.com/poljar/matrix-nio) library. It supports text messaging in both direct messages and group rooms.
+The Matrix channel connects Orchestrator to any Matrix homeserver using the [matrix-nio](https://github.com/poljar/matrix-nio) library. It supports text messaging in both direct messages and group rooms.
 
 ### Create a Matrix bot account and get an access token
 
@@ -877,7 +877,7 @@ Find `channels.matrix` in your agent's `agent.json` (e.g., `~/.qwenpaw/workspace
 | `user_id`      | string | `""` (required) | Bot User ID (e.g., `@mybot:matrix.org`)            |
 | `access_token` | string | `""` (required) | Bot access token (starts with `syt_`)              |
 
-Save the file; the channel will reload automatically if QwenPaw is already running.
+Save the file; the channel will reload automatically if Orchestrator is already running.
 
 ### Chat with the bot
 
@@ -893,7 +893,7 @@ Invite the bot to a room or send it a direct message from any Matrix client (e.g
 
 ## XiaoYi
 
-The XiaoYi channel connects QwenPaw via **A2A (Agent-to-Agent) protocol** over WebSocket to Huawei's AI assistant platform.
+The XiaoYi channel connects Orchestrator via **A2A (Agent-to-Agent) protocol** over WebSocket to Huawei's AI assistant platform.
 
 ### Get credentials
 
@@ -923,12 +923,12 @@ The XiaoYi channel connects QwenPaw via **A2A (Agent-to-Agent) protocol** over W
 
 ## Voice
 
-The Voice channel enables phone call interactions with QwenPaw via Twilio ConversationRelay, supporting Speech-to-Text (STT) and Text-to-Speech (TTS) for voice-based conversations.
+The Voice channel enables phone call interactions with Orchestrator via Twilio ConversationRelay, supporting Speech-to-Text (STT) and Text-to-Speech (TTS) for voice-based conversations.
 
 ### Prerequisites
 
 1. **Twilio Account**: Register at [Twilio](https://www.twilio.com/) and obtain credentials
-2. **Cloudflare Tunnel** (or similar): Expose your local QwenPaw service to the public internet for Twilio webhook callbacks
+2. **Cloudflare Tunnel** (or similar): Expose your local Orchestrator service to the public internet for Twilio webhook callbacks
 
 ### Create Twilio account and get credentials
 
@@ -943,7 +943,7 @@ The Voice channel enables phone call interactions with QwenPaw via Twilio Conver
 
 ### Configure Cloudflare Tunnel
 
-Twilio needs to reach QwenPaw's webhook endpoint via the public internet, so you need to expose your local service.
+Twilio needs to reach Orchestrator's webhook endpoint via the public internet, so you need to expose your local service.
 
 1. Install Cloudflare Tunnel client:
 
@@ -999,7 +999,7 @@ Advanced options:
       "tts_voice": "en-US-Journey-D",
       "stt_provider": "deepgram",
       "language": "en-US",
-      "welcome_greeting": "Hi! This is QwenPaw. How can I help you?"
+      "welcome_greeting": "Hi! This is Orchestrator. How can I help you?"
     }
   }
 }
@@ -1019,11 +1019,11 @@ Configure your phone number's webhook in the Twilio Console:
 
 ### Usage
 
-After configuration, simply call your Twilio phone number to have a voice conversation with QwenPaw:
+After configuration, simply call your Twilio phone number to have a voice conversation with Orchestrator:
 
 1. Dial the phone number
 2. After hearing the welcome greeting, start speaking
-3. QwenPaw converts speech to text and processes it through the Agent
+3. Orchestrator converts speech to text and processes it through the Agent
 4. The Agent's response is converted to speech and played back to you
 
 **Voice channel-specific fields:**
@@ -1038,7 +1038,7 @@ After configuration, simply call your Twilio phone number to have a voice conver
 | `tts_voice`          | string | `"en-US-Journey-D"`                          | TTS voice model                              |
 | `stt_provider`       | string | `"deepgram"`                                 | Speech-to-text provider                      |
 | `language`           | string | `"en-US"`                                    | Language code                                |
-| `welcome_greeting`   | string | `"Hi! This is QwenPaw. How can I help you?"` | Welcome message when call connects           |
+| `welcome_greeting`   | string | `"Hi! This is Orchestrator. How can I help you?"` | Welcome message when call connects           |
 
 > **Note**: The Voice channel requires a continuous network connection and a running tunnel solution. For production use, consider stable tunneling options (like Cloudflare Tunnel, ngrok paid plans, etc.).
 
@@ -1277,9 +1277,9 @@ def build_agent_request_from_native(self, native_payload):
 
 ### HTTP route registration
 
-For channels that require webhook callbacks (e.g., WeChat, Slack, LINE), you can register custom HTTP routes by exporting a `register_app_routes` callable in your module — no changes to QwenPaw's core source required.
+For channels that require webhook callbacks (e.g., WeChat, Slack, LINE), you can register custom HTTP routes by exporting a `register_app_routes` callable in your module — no changes to Orchestrator's core source required.
 
-At startup, QwenPaw scans modules in `custom_channels/` for a `register_app_routes` export. If found, it is called with the FastAPI `app` instance, allowing the channel to register any routes it needs.
+At startup, Orchestrator scans modules in `custom_channels/` for a `register_app_routes` export. If found, it is called with the FastAPI `app` instance, allowing the channel to register any routes it needs.
 
 **Route prefix behavior**:
 
@@ -1358,7 +1358,7 @@ curl -X POST http://localhost:8088/api/my-echo/callback \
   -d '{"user_id": "test", "session_id": "test", "text": "Hello!"}'
 ```
 
-**Real-world example**: WeChat ClawBot integration ([PR #2140](https://github.com/agentscope-ai/QwenPaw/pull/2140), [Issue #2043](https://github.com/agentscope-ai/QwenPaw/issues/2043)) uses this mechanism to register the `/api/wechat/callback` route with Tencent's official SDK for message delivery.
+**Real-world example**: WeChat ClawBot integration ([PR #2140](https://github.com/agentscope-ai/Orchestrator/pull/2140), [Issue #2043](https://github.com/agentscope-ai/Orchestrator/issues/2043)) uses this mechanism to register the `/api/wechat/callback` route with Tencent's official SDK for message delivery.
 
 ---
 

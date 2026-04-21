@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # pylint:disable=too-many-statements
 """
-Create a temporary conda env, install QwenPaw from a wheel, run conda-pack.
+Create a temporary conda env, install Orchestrator from a wheel, run conda-pack.
 Used by build_macos.sh and build_win.ps1. Run from repo root.
 """
 from __future__ import annotations
@@ -73,7 +73,7 @@ def _pick_wheel(wheel_arg: str | None) -> Path:
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Conda-pack QwenPaw (temp env).",
+        description="Conda-pack Orchestrator (temp env).",
     )
     parser.add_argument(
         "--output",

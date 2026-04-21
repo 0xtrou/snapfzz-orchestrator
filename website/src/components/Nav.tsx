@@ -87,11 +87,11 @@ export function Nav() {
             <span>{t("nav.docs")}</span>
           </Link>
           <a
-            href="https://github.com/agentscope-ai/QwenPaw"
+            href="https://github.com/agentscope-ai/Orchestrator"
             target="_blank"
             rel="noopener noreferrer"
             className={navLinkOrangeClass}
-            title="QwenPaw on GitHub"
+            title="Orchestrator on GitHub"
           >
             <GitHubIcon />
             <span>{t("nav.github")}</span>
@@ -158,12 +158,12 @@ export function Nav() {
           <BookOpen size={18} strokeWidth={navIconStroke} /> {t("nav.docs")}
         </Link>
         <a
-          href="https://github.com/agentscope-ai/QwenPaw"
+          href="https://github.com/agentscope-ai/Orchestrator"
           target="_blank"
           rel="noopener noreferrer"
           className={navLinkOrangeClass}
           onClick={() => setOpen(false)}
-          title="QwenPaw on GitHub"
+          title="Orchestrator on GitHub"
         >
           <GitHubIcon /> {t("nav.github")}
         </a>

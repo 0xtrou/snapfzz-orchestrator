@@ -160,7 +160,7 @@ class QwenPawAgent(ToolGuardMixin, ReActAgent):
         )
         # Initialize parent ReActAgent
         super().__init__(
-            name="Friday",
+            name="Orchestrator",
             model=model,
             sys_prompt=sys_prompt,
             toolkit=toolkit,
@@ -1004,7 +1004,6 @@ class QwenPawAgent(ToolGuardMixin, ReActAgent):
 
     _ROUND_END_NOTICE = (
         "\n\n---\n"
-        "本轮调用已达最大次数，回复已终止，请继续输入。\n"
         "Maximum iterations reached for this round. "
         "Please send a new message to continue."
     )

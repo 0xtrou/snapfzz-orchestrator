@@ -1,25 +1,25 @@
 version: '3.8'
 
 volumes:
-  qwenpaw-data:
-    name: qwenpaw-data
-  qwenpaw-secrets:
-    name: qwenpaw-secrets
-  qwenpaw-backups:
-    name: qwenpaw-backups
+  orchestrator-data:
+    name: orchestrator-data
+  orchestrator-secrets:
+    name: orchestrator-secrets
+  orchestrator-backups:
+    name: orchestrator-backups
 
 services:
-  qwenpaw:
+  orchestrator:
     image: agentscope/qwenpaw:latest
-    container_name: qwenpaw
+    container_name: orchestrator
     restart: always
     ports:
       - "127.0.0.1:8088:8088"
     # environment:
-    #   - QWENPAW_AUTH_ENABLED=true
-    #   - QWENPAW_AUTH_USERNAME=admin
-    #   - QWENPAW_AUTH_PASSWORD=yourpassword
+    #   - ORCHESTRATOR_AUTH_ENABLED=true
+    #   - ORCHESTRATOR_AUTH_USERNAME=admin
+    #   - ORCHESTRATOR_AUTH_PASSWORD=yourpassword
     volumes:
-      - qwenpaw-data:/app/working
-      - qwenpaw-secrets:/app/working.secret
-      - qwenpaw-backups:/app/working.backups
+      - orchestrator-data:/app/working
+      - orchestrator-secrets:/app/working.secret
+      - orchestrator-backups:/app/working.backups

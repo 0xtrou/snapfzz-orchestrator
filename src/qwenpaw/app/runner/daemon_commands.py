@@ -271,7 +271,7 @@ class DaemonCommandHandlerMixin:
         parsed = parse_daemon_query(query)
         if not parsed:
             return Msg(
-                name="Friday",
+                name="Orchestrator",
                 role="assistant",
                 content=[
                     TextBlock(type="text", text="Unknown daemon command."),
@@ -300,7 +300,7 @@ class DaemonCommandHandlerMixin:
             text = "Unknown daemon subcommand."
         logger.info("handle_daemon_command %s completed", query)
         return Msg(
-            name="Friday",
+            name="Orchestrator",
             role="assistant",
             content=[TextBlock(type="text", text=text)],
         )

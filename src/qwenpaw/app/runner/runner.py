@@ -253,7 +253,7 @@ class AgentRunner(Runner):
             desc = post.get("description") or "No description."
             logger.info("Skill info: %s", name)
             return Msg(
-                name="Friday",
+                name="Orchestrator",
                 role="assistant",
                 content=[
                     TextBlock(
@@ -340,7 +340,7 @@ class AgentRunner(Runner):
             )
             return (
                 Msg(
-                    name="Friday",
+                    name="Orchestrator",
                     role="assistant",
                     content=[
                         TextBlock(
@@ -389,7 +389,7 @@ class AgentRunner(Runner):
         )
         return (
             Msg(
-                name="Friday",
+                name="Orchestrator",
                 role="assistant",
                 content=[
                     TextBlock(
@@ -840,7 +840,7 @@ class AgentRunner(Runner):
                 ts = getattr(denial_response, "timestamp", None)
                 msg_dict = {
                     "id": getattr(denial_response, "id", ""),
-                    "name": getattr(denial_response, "name", "Friday"),
+                    "name": getattr(denial_response, "name", "Orchestrator"),
                     "role": getattr(denial_response, "role", "assistant"),
                     "content": denial_response.content,
                     "metadata": getattr(

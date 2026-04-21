@@ -1,6 +1,6 @@
 # 频道配置
 
-**频道** = 你和 QwenPaw 在「哪里」对话：接钉钉就在钉钉里回，接 QQ 就在 QQ 里回。不熟悉这个词的话可以先看 [项目介绍](./intro)。
+**频道** = 你和 Orchestrator 在「哪里」对话：接钉钉就在钉钉里回，接 QQ 就在 QQ 里回。不熟悉这个词的话可以先看 [项目介绍](./intro)。
 
 配置频道有两种方式：
 
@@ -50,7 +50,7 @@
 
    ![client](https://img.alicdn.com/imgextra/i3/O1CN01JsRrwx1hJImLfM7O1_!!6000000004256-2-tps-2809-1585.png)
 
-7. （可选） **将服务器 IP 加入白名单** — 调用钉钉开放平台 API（如下载用户发送的图片和文件）时需要此配置。在应用设置中进入 **"安全设置→服务器出口 IP"**，添加运行 QwenPaw 的机器的公网 IP。可在终端执行 `curl ifconfig.me` 查看公网 IP。若未配置白名单，图片和文件下载将报 `Forbidden.AccessDenied.IpNotInWhiteList` 错误。
+7. （可选） **将服务器 IP 加入白名单** — 调用钉钉开放平台 API（如下载用户发送的图片和文件）时需要此配置。在应用设置中进入 **"安全设置→服务器出口 IP"**，添加运行 Orchestrator 的机器的公网 IP。可在终端执行 `curl ifconfig.me` 查看公网 IP。若未配置白名单，图片和文件下载将报 `Forbidden.AccessDenied.IpNotInWhiteList` 错误。
 
 ### 绑定应用
 
@@ -92,7 +92,7 @@
 >
 > - 若希望隐藏工具执行详情，可设置 `filter_tool_messages: true`。
 > - AI Card 模式：将 `message_type` 设为 `card`，并填写 `card_template_id`；`card_template_key` 必须与钉钉模板变量名完全一致。
-> - 群聊场景建议显式配置 `robot_code`；留空时 QwenPaw 会回退使用 `client_id`。
+> - 群聊场景建议显式配置 `robot_code`；留空时 Orchestrator 会回退使用 `client_id`。
 
 保存后若服务已运行会自动重载；未运行则执行 `qwenpaw app` 启动。
 
@@ -138,7 +138,7 @@
 
 3. 在 `agent.json` 中填写上述 **App ID** 和 **App Secret**（见下方「填写 agent.json」），保存
 
-4. 执行 **`qwenpaw app`** 启动 QwenPaw 服务
+4. 执行 **`qwenpaw app`** 启动 Orchestrator 服务
 
 5. 回到飞书开放平台，在「能力」中启用 **机器人**
 
@@ -178,7 +178,7 @@
 
 7. 在「事件与回调」中，点击「事件配置」，选择订阅方式为**长连接（WebSocket）** 模式（无需公网 IP）
 
-> 注：**操作顺序**为先配置 App ID/Secret → 启动 `qwenpaw app` → 再在开放平台配置长连接，如果此处仍显示错误，尝试先暂停 QwenPaw 服务并重新启动 `qwenpaw app`。
+> 注：**操作顺序**为先配置 App ID/Secret → 启动 `qwenpaw app` → 再在开放平台配置长连接，如果此处仍显示错误，尝试先暂停 Orchestrator 服务并重新启动 `qwenpaw app`。
 
 ![websocket](https://img.alicdn.com/imgextra/i2/O1CN01LQwKON1x7QMNP41kC_!!6000000006396-2-tps-4082-2126.png)
 
@@ -229,7 +229,7 @@
 
 如果你使用 SOCKS 代理联网，还需安装 `python-socks`（例如 `pip install python-socks`），否则可能报错：`python-socks is required to use a SOCKS proxy`。
 
-> 注: **App ID** 和 **App Secret** 信息也可以在Console前端填写，但需重启 QwenPaw 服务，才能继续配置长链接的操作。
+> 注: **App ID** 和 **App Secret** 信息也可以在Console前端填写，但需重启 Orchestrator 服务，才能继续配置长链接的操作。
 > ![console](https://img.alicdn.com/imgextra/i3/O1CN01KCQj1b1z8utMnRr6y_!!6000000006670-2-tps-3822-2070.png)
 
 ### 机器人权限建议
@@ -251,7 +251,7 @@
 | 获取与上传图片或文件资源       | im:resource                    | 应用身份     | -              |
 | **以应用身份读取通讯录**       | **contact:user.base:readonly** | **应用身份** | **见下方说明** |
 
-> **获取用户昵称（推荐）**：若希望会话和日志中显示**用户昵称**（如「张三#1d1a」）而非「unknown#1d1a」，需额外开通通讯录只读权限 **以应用身份读取通讯录**（`contact:user.base:readonly`）。未开通时，飞书仅返回 open_id 等身份字段，不返回姓名，QwenPaw 无法解析昵称。开通后需重新发布/更新应用版本，权限生效后即可正常显示用户名称。
+> **获取用户昵称（推荐）**：若希望会话和日志中显示**用户昵称**（如「张三#1d1a」）而非「unknown#1d1a」，需额外开通通讯录只读权限 **以应用身份读取通讯录**（`contact:user.base:readonly`）。未开通时，飞书仅返回 open_id 等身份字段，不返回姓名，Orchestrator 无法解析昵称。开通后需重新发布/更新应用版本，权限生效后即可正常显示用户名称。
 
 ### 将机器人添加到常用
 
@@ -295,7 +295,7 @@
    > cp ./bin/imsg /usr/local/bin/
    > ```
 
-3. 为了使 iMessage 中的信息能被获取，需要 **终端** （或你用来运行 QwenPaw 的 app） 和 **消息** 有 **完全磁盘访问权限**（系统设置 → 隐私与安全性 → 完全磁盘访问权限）。
+3. 为了使 iMessage 中的信息能被获取，需要 **终端** （或你用来运行 Orchestrator 的 app） 和 **消息** 有 **完全磁盘访问权限**（系统设置 → 隐私与安全性 → 完全磁盘访问权限）。
 
    ![权限](https://img.alicdn.com/imgextra/i2/O1CN01gCbMWX1S2c77mcoPo_!!6000000002189-2-tps-958-440.png)
 
@@ -431,7 +431,7 @@
 
 5. 在**开发管理**中获取**AppID**和**AppSecret**（即 ClientSecret），填入 `agent.json`，方式见下方填写 agent.json。在**IP白名单**中添加一个IP。
 
-   > **提示：** 如果使用魔搭创空间部署QwenPaw，QQ频道的IP白名单应填写：`47.92.200.108`
+   > **提示：** 如果使用魔搭创空间部署Orchestrator，QQ频道的IP白名单应填写：`47.92.200.108`
 
 ![1](https://img.alicdn.com/imgextra/i4/O1CN012UQWI21cnvBAUcz54_!!6000000003646-2-tps-4082-2126.png)
 
@@ -473,16 +473,16 @@
 
 ## OneBot v11（NapCat / QQ 完整协议）
 
-**OneBot** 渠道通过**反向 WebSocket** 将 QwenPaw 连接到 [NapCat](https://github.com/NapNeko/NapCatQQ)、[go-cqhttp](https://github.com/Mrs4s/go-cqhttp)、[Lagrange](https://github.com/LagrangeDev/Lagrange.Core) 或其他任何兼容 [OneBot v11](https://github.com/botuniverse/onebot-11) 的实现。
+**OneBot** 渠道通过**反向 WebSocket** 将 Orchestrator 连接到 [NapCat](https://github.com/NapNeko/NapCatQQ)、[go-cqhttp](https://github.com/Mrs4s/go-cqhttp)、[Lagrange](https://github.com/LagrangeDev/Lagrange.Core) 或其他任何兼容 [OneBot v11](https://github.com/botuniverse/onebot-11) 的实现。
 
 与内置 QQ 渠道（使用官方 QQ Bot API，功能受限）不同，OneBot v11 提供**完整 QQ 协议**支持：个人号、群聊无需 @、富媒体消息等。
 
 ### 工作原理
 
-QwenPaw 启动一个 WebSocket 服务器，OneBot 实现（如 NapCat）作为客户端连接过来：
+Orchestrator 启动一个 WebSocket 服务器，OneBot 实现（如 NapCat）作为客户端连接过来：
 
 ```
-NapCat  ──反向 WS──▶  QwenPaw (:6199/ws)
+NapCat  ──反向 WS──▶  Orchestrator (:6199/ws)
 ```
 
 ### 配置 NapCat
@@ -501,7 +501,7 @@ NapCat  ──反向 WS──▶  QwenPaw (:6199/ws)
 
 3. 进入 **网络配置** → **新建** → **WebSocket 客户端**（反向 WS）：
    - URL：`ws://<qwenpaw地址>:6199/ws`
-   - Access Token：与 QwenPaw 配置中的 `access_token` 保持一致（可选）
+   - Access Token：与 Orchestrator 配置中的 `access_token` 保持一致（可选）
 
 ### 填写 agent.json
 
@@ -524,7 +524,7 @@ NapCat  ──反向 WS──▶  QwenPaw (:6199/ws)
 | `access_token`           | string | `""`      | 可选的认证 Token（需与 NapCat 配置一致）                      |
 | `share_session_in_group` | bool   | `false`   | 为 `true` 时群成员共享一个会话；为 `false` 时每个成员独立会话 |
 
-> **Docker Compose 提示：** QwenPaw 和 NapCat 一起用 Docker Compose 部署时，NapCat 的反向 WS 地址填 `ws://qwenpaw:6199/ws`（使用服务名）。
+> **Docker Compose 提示：** Orchestrator 和 NapCat 一起用 Docker Compose 部署时，NapCat 的反向 WS 地址填 `ws://qwenpaw:6199/ws`（使用服务名）。
 
 **多模态支持：**
 
@@ -536,7 +536,7 @@ NapCat  ──反向 WS──▶  QwenPaw (:6199/ws)
 | 视频 | 🚧   | ✓    |
 | 文件 | ✓    | ✓    |
 
-> **提示：** 语音和视频在渠道层已正确接收，但需要配置 QwenPaw 的转写服务（`transcription_provider_type`）才能让 LLM 理解内容。未配置时语音消息显示为占位符。
+> **提示：** 语音和视频在渠道层已正确接收，但需要配置 Orchestrator 的转写服务（`transcription_provider_type`）才能让 LLM 理解内容。未配置时语音消息显示为占位符。
 
 ---
 
@@ -624,7 +624,7 @@ NapCat  ──反向 WS──▶  QwenPaw (:6199/ws)
 
 ### 扫码登录（推荐通过 Console）
 
-1. 在 QwenPaw Web Console 中进入 **设置 → 通道 → 微信个人（iLink）**。
+1. 在 Orchestrator Web Console 中进入 **设置 → 通道 → 微信个人（iLink）**。
 2. 点击 **获取登录二维码**，等待二维码显示。
 3. 用手机微信扫描二维码并确认授权。
 4. 扫码成功后，Bot Token 会自动填入表单，点击 **保存** 即可。
@@ -811,7 +811,7 @@ JSON消息格式
 
 2. 模糊匹配订阅和自动推送
 
-   模糊订阅全server/+/up主题，根据客户端的client_id自动推送到对应的主题，例如客户端向`/server/client_a/up`推送QwenPaw处理完后，将会向`/client/client_b/down`推送消息。
+   模糊订阅全server/+/up主题，根据客户端的client_id自动推送到对应的主题，例如客户端向`/server/client_a/up`推送Orchestrator处理完后，将会向`/client/client_b/down`推送消息。
 
    | subscribe_topic | publish_topic           |
    | --------------- | ----------------------- |
@@ -828,13 +828,13 @@ JSON消息格式
    }
    ```
 
-   消息会根据redirect_client_id属性，推送至 `client/client_b/down`，从而实现跨主题推送。在物联网场景，可以做到以QwenPaw为核心，根据个人需求，多设备间自主推送消息。
+   消息会根据redirect_client_id属性，推送至 `client/client_b/down`，从而实现跨主题推送。在物联网场景，可以做到以Orchestrator为核心，根据个人需求，多设备间自主推送消息。
 
 ---
 
 ## Matrix
 
-Matrix 频道通过 [matrix-nio](https://github.com/poljar/matrix-nio) 库将 QwenPaw 接入任意 Matrix 服务器，支持私聊和群聊房间中的文本消息收发。
+Matrix 频道通过 [matrix-nio](https://github.com/poljar/matrix-nio) 库将 Orchestrator 接入任意 Matrix 服务器，支持私聊和群聊房间中的文本消息收发。
 
 ### 创建机器人账号并获取 Access Token
 
@@ -890,7 +890,7 @@ Matrix 频道通过 [matrix-nio](https://github.com/poljar/matrix-nio) 库将 Qw
 | `user_id`      | string | `""`（必填） | 机器人 User ID（如 `@mybot:matrix.org`）     |
 | `access_token` | string | `""`（必填） | 机器人的 Access Token（以 `syt_` 开头）      |
 
-保存后，若 QwenPaw 已在运行，频道会自动重载。
+保存后，若 Orchestrator 已在运行，频道会自动重载。
 
 ### 开始聊天
 
@@ -948,12 +948,12 @@ Matrix 频道通过 [matrix-nio](https://github.com/poljar/matrix-nio) 库将 Qw
 
 ## Voice
 
-Voice 频道通过 Twilio ConversationRelay 实现电话语音交互，支持语音转文本（STT）、文本转语音（TTS），让用户可以直接拨打电话与 QwenPaw 对话。
+Voice 频道通过 Twilio ConversationRelay 实现电话语音交互，支持语音转文本（STT）、文本转语音（TTS），让用户可以直接拨打电话与 Orchestrator 对话。
 
 ### 前置要求
 
 1. **Twilio 账号**：从 [Twilio 官网](https://www.twilio.com/) 注册账号并获取凭证
-2. **Cloudflare Tunnel**（或其他内网穿透方案）：将本地 QwenPaw 服务暴露到公网，供 Twilio 回调使用
+2. **Cloudflare Tunnel**（或其他内网穿透方案）：将本地 Orchestrator 服务暴露到公网，供 Twilio 回调使用
 
 ### 创建 Twilio 账号并获取凭证
 
@@ -968,7 +968,7 @@ Voice 频道通过 Twilio ConversationRelay 实现电话语音交互，支持语
 
 ### 配置 Cloudflare Tunnel
 
-Twilio 需要通过公网回调 QwenPaw 的 Webhook 接口，因此需要将本地服务暴露到公网。
+Twilio 需要通过公网回调 Orchestrator 的 Webhook 接口，因此需要将本地服务暴露到公网。
 
 1. 安装 Cloudflare Tunnel 客户端：
 
@@ -1024,7 +1024,7 @@ cloudflared tunnel --url http://localhost:8088
       "tts_voice": "en-US-Journey-D",
       "stt_provider": "deepgram",
       "language": "en-US",
-      "welcome_greeting": "Hi! This is QwenPaw. How can I help you?"
+      "welcome_greeting": "Hi! This is Orchestrator. How can I help you?"
     }
   }
 }
@@ -1044,11 +1044,11 @@ cloudflared tunnel --url http://localhost:8088
 
 ### 使用方式
 
-配置完成后，直接拨打你购买的 Twilio 电话号码，即可与 QwenPaw 进行语音对话：
+配置完成后，直接拨打你购买的 Twilio 电话号码，即可与 Orchestrator 进行语音对话：
 
 1. 拨打电话
 2. 听到欢迎语后开始说话
-3. QwenPaw 将语音转文本，调用 Agent 处理
+3. Orchestrator 将语音转文本，调用 Agent 处理
 4. 将 Agent 的回复转为语音播放给用户
 
 **Voice 频道专属字段说明：**
@@ -1063,7 +1063,7 @@ cloudflared tunnel --url http://localhost:8088
 | `tts_voice`          | string | `"en-US-Journey-D"`                          | TTS 语音模型                       |
 | `stt_provider`       | string | `"deepgram"`                                 | 语音转文本提供商                   |
 | `language`           | string | `"en-US"`                                    | 语言代码                           |
-| `welcome_greeting`   | string | `"Hi! This is QwenPaw. How can I help you?"` | 欢迎语（接通电话后的第一句话）     |
+| `welcome_greeting`   | string | `"Hi! This is Orchestrator. How can I help you?"` | 欢迎语（接通电话后的第一句话）     |
 
 > **注意**：Voice 频道需要持续的网络连接和内网穿透工具运行。建议在生产环境使用稳定的内网穿透方案（如 Cloudflare Tunnel、ngrok 付费版等）。
 
@@ -1293,9 +1293,9 @@ def build_agent_request_from_native(self, native_payload):
 
 ### HTTP 路由注册
 
-对于需要 Webhook 回调的渠道（如微信、Slack、LINE 等），可以通过在模块中导出 `register_app_routes` 可调用对象来注册自定义 HTTP 路由，无需修改 QwenPaw 核心源码。
+对于需要 Webhook 回调的渠道（如微信、Slack、LINE 等），可以通过在模块中导出 `register_app_routes` 可调用对象来注册自定义 HTTP 路由，无需修改 Orchestrator 核心源码。
 
-QwenPaw 启动时会扫描 `custom_channels/` 下的模块，发现 `register_app_routes` 后将其与 FastAPI `app` 实例一起调用，渠道即可注册所需的任何路由。
+Orchestrator 启动时会扫描 `custom_channels/` 下的模块，发现 `register_app_routes` 后将其与 FastAPI `app` 实例一起调用，渠道即可注册所需的任何路由。
 
 **路由前缀规则**：
 
@@ -1376,7 +1376,7 @@ curl -X POST http://localhost:8088/api/my-echo/callback \
   -d '{"user_id": "test", "session_id": "test", "text": "Hello!"}'
 ```
 
-**实际案例**：微信 ClawBot 集成（[PR #2140](https://github.com/agentscope-ai/QwenPaw/pull/2140)、[Issue #2043](https://github.com/agentscope-ai/QwenPaw/issues/2043)）通过此机制注册 `/api/wechat/callback` 路由，使用腾讯官方 SDK 处理消息投递。
+**实际案例**：微信 ClawBot 集成（[PR #2140](https://github.com/agentscope-ai/Orchestrator/pull/2140)、[Issue #2043](https://github.com/agentscope-ai/Orchestrator/issues/2043)）通过此机制注册 `/api/wechat/callback` 路由，使用腾讯官方 SDK 处理消息投递。
 
 ---
 

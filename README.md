@@ -1,58 +1,30 @@
 <div align="center">
 
-# QwenPaw
+# Orchestrator
 
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-black.svg?logo=github)](https://github.com/agentscope-ai/QwenPaw)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-black.svg?logo=github)](https://github.com/0xtrou/snapfzz-orchestrator)
 [![PyPI](https://img.shields.io/pypi/v/qwenpaw?color=3775A9&label=PyPI&logo=pypi)](https://pypi.org/project/qwenpaw/)
-[![Documentation](https://img.shields.io/badge/Docs-Website-green.svg?logo=readthedocs&label=Docs)](https://qwenpaw.agentscope.io/)
 [![Python Version](https://img.shields.io/badge/python-3.10%20~%20%3C3.14-blue.svg?logo=python&label=Python)](https://www.python.org/downloads/)
-[![Last Commit](https://img.shields.io/github/last-commit/agentscope-ai/QwenPaw)](https://github.com/agentscope-ai/QwenPaw)
 [![License](https://img.shields.io/badge/license-Apache%202.0-red.svg?logo=apache&label=License)](LICENSE)
-[![Code Style](https://img.shields.io/badge/code%20style-black-black.svg?logo=python&label=CodeStyle)](https://github.com/psf/black)
-[![GitHub Stars](https://img.shields.io/github/stars/agentscope-ai/QwenPaw?style=flat&logo=github&color=yellow&label=Stars)](https://github.com/agentscope-ai/QwenPaw/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/agentscope-ai/QwenPaw?style=flat&logo=github&color=purple&label=Forks)](https://github.com/agentscope-ai/QwenPaw/network)
-[![DeepWiki](https://img.shields.io/badge/DeepWiki-Ask_Devin-navy.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACwAAAAyCAYAAAAnWDnqAAAAAXNSR0IArs4c6QAAA05JREFUaEPtmUtyEzEQhtWTQyQLHNak2AB7ZnyXZMEjXMGeK/AIi+QuHrMnbChYY7MIh8g01fJoopFb0uhhEqqcbWTp06/uv1saEDv4O3n3dV60RfP947Mm9/SQc0ICFQgzfc4CYZoTPAswgSJCCUJUnAAoRHOAUOcATwbmVLWdGoH//PB8mnKqScAhsD0kYP3j/Yt5LPQe2KvcXmGvRHcDnpxfL2zOYJ1mFwrryWTz0advv1Ut4CJgf5uhDuDj5eUcAUoahrdY/56ebRWeraTjMt/00Sh3UDtjgHtQNHwcRGOC98BJEAEymycmYcWwOprTgcB6VZ5JK5TAJ+fXGLBm3FDAmn6oPPjR4rKCAoJCal2eAiQp2x0vxTPB3ALO2CRkwmDy5WohzBDwSEFKRwPbknEggCPB/imwrycgxX2NzoMCHhPkDwqYMr9tRcP5qNrMZHkVnOjRMWwLCcr8ohBVb1OMjxLwGCvjTikrsBOiA6fNyCrm8V1rP93iVPpwaE+gO0SsWmPiXB+jikdf6SizrT5qKasx5j8ABbHpFTx+vFXp9EnYQmLx02h1QTTrl6eDqxLnGjporxl3NL3agEvXdT0WmEost648sQOYAeJS9Q7bfUVoMGnjo4AZdUMQku50McDcMWcBPvr0SzbTAFDfvJqwLzgxwATnCgnp4wDl6Aa+Ax283gghmj+vj7feE2KBBRMW3FzOpLOADl0Isb5587h/U4gGvkt5v60Z1VLG8BhYjbzRwyQZemwAd6cCR5/XFWLYZRIMpX39AR0tjaGGiGzLVyhse5C9RKC6ai42ppWPKiBagOvaYk8lO7DajerabOZP46Lby5wKjw1HCRx7p9sVMOWGzb/vA1hwiWc6jm3MvQDTogQkiqIhJV0nBQBTU+3okKCFDy9WwferkHjtxib7t3xIUQtHxnIwtx4mpg26/HfwVNVDb4oI9RHmx5WGelRVlrtiw43zboCLaxv46AZeB3IlTkwouebTr1y2NjSpHz68WNFjHvupy3q8TFn3Hos2IAk4Ju5dCo8B3wP7VPr/FGaKiG+T+v+TQqIrOqMTL1VdWV1DdmcbO8KXBz6esmYWYKPwDL5b5FA1a0hwapHiom0r/cKaoqr+27/XcrS5UwSMbQAAAABJRU5ErkJggg==)](https://deepwiki.com/agentscope-ai/QwenPaw)
 [![Discord](https://img.shields.io/badge/Discord-Join_Us-blueviolet.svg?logo=discord)](https://discord.gg/eYMpfnkG8h)
-[![X](https://img.shields.io/badge/X-Follow_Us-black.svg?logo=x)](https://x.com/agentscope_ai)
-[![DingTalk](https://img.shields.io/badge/DingTalk-Join_Us-orange.svg)](https://qr.dingtalk.com/action/joingroup?code=v1,k1,OmDlBXpjW+I2vWjKDsjvI9dhcXjGZi3bQiojOq3dlDw=&_dt_no_comment=1&origin=11)
 
-[[Documentation](https://qwenpaw.agentscope.io/)] [[中文](README_zh.md)] [[日本語](README_ja.md)] [[Русский](README_ru.md)]
-
-<p align="center">
-  <img src="https://gw.alicdn.com/imgextra/i1/O1CN01sens5C1TuwioeGexL_!!6000000002443-55-tps-771-132.svg" alt="QwenPaw Logo" width="120">
-</p>
-
-<p align="center"><b>Works for you, grows with you.</b></p>
+<p align="center"><b>International multi-agent orchestration framework.</b></p>
 
 </div>
 
-Your personal AI assistant — easy to install, deploy locally or in the cloud, connect across channels, extend with ease.
+Orchestrator is a self-hosted multi-agent AI framework — deploy locally or in the cloud, connect across channels, extend with custom skills.
 
 > **Core capabilities:**
 >
 > **Under your control** — Memory and personalization fully under your control. Deploy locally (data stays on your machine) or in the cloud (your chosen server). No third-party hosting, no data upload.
 >
-> **Skills extension** — Built-in scheduling, PDF/Office processing, news digest, and more; custom skills auto-loaded, no lock-in. Skills determine what QwenPaw can do.
+> **Skills extension** — Built-in scheduling, PDF/Office processing, news digest, and more; custom skills auto-loaded, no lock-in. Skills determine what Orchestrator can do.
 >
 > **Multi-agent collaboration** — Create multiple independent agents, each with their own role; enable collaboration skills for inter-agent communication to tackle complex tasks together.
 >
 > **Multi-layer security** — Tool guard, file access control, skill security scanning to ensure safe operation.
 >
-> **Every channel** — DingTalk, Feishu, WeChat, Discord, Telegram, and more. One QwenPaw, connect as needed.
->
-> <details>
-> <summary><b>What you can do with QwenPaw</b></summary>
->
-> <br>
->
-> - **Social media**: Daily hot post digests (Xiaohongshu, Zhihu, Reddit), Bilibili/YouTube video summaries.
-> - **Productivity**: Email & newsletter highlights pushed to DingTalk/Feishu/QQ; email & calendar contact organization.
-> - **Creative & building**: Describe your goal before sleep, auto-execute, wake up to a prototype; full workflow from topic selection to final video.
-> - **Research & learning**: Track tech & AI news, personal knowledge base search and reuse.
-> - **Desktop & files**: Organize and search local files, read & summarize documents, request files in chat.
-> - **Explore more**: Combine Skills with scheduled tasks into your own agentic app.
->
-> </details>
+> **Every channel** — Discord, Telegram, WeChat, and more. One Orchestrator, connect as needed.
 
 ---
 
@@ -66,7 +38,7 @@ Your personal AI assistant — easy to install, deploy locally or in the cloud, 
 
 [2026-04-14] We've released v1.1.1! See the full [v1.1.1 Release Notes](https://qwenpaw.agentscope.io/release-notes).
 
-[2026-04-12] **CoPaw is Officially Rebranding to QwenPaw**: This rebranding marks an important step forward into our next phase of open-source development.
+[2026-04-12] **CoPaw is Officially Rebranding to Orchestrator**: This rebranding marks an important step forward into our next phase of open-source development.
 
 The new name better reflects the open ecosystem we are building and the broader direction we are continuing to pursue:
 
@@ -79,7 +51,7 @@ This rebranding does not change our vision and goals in the open-source communit
 - To stay committed to open-source collaboration and move forward together with the community.
 
 Thank you all for your support along the way.
-From today on, QwenPaw will stay and grow with you!
+From today on, Orchestrator will stay and grow with you!
 
 ---
 
@@ -89,7 +61,7 @@ From today on, QwenPaw will stay and grow with you!
 >
 > - **🚀 I'm new and want to try quickly**: [Quick Start](#quick-start) → three commands to run → [Configure model](#api-key) → chat in Console
 > - **💬 I want to use in DingTalk/Feishu/WeChat**: Complete Quick Start → [Configure model](#api-key) → [Channel setup](https://qwenpaw.agentscope.io/docs/channels)
-> - **🐍 I don't want to install Python**: [Desktop app](#option-6-desktop-application-beta) or [Script install](#option-2-script-install) or [ModelScope Studio](https://modelscope.cn/studios/fork?target=AgentScope/QwenPaw)
+> - **🐍 I don't want to install Python**: [Desktop app](#option-6-desktop-application-beta) or [Script install](#option-2-script-install) or [ModelScope Studio](https://modelscope.cn/studios/fork?target=AgentScope/Orchestrator)
 > - **💻 I want to use local models (no API key needed)**: [Local Models](#local-models) → download model → start using
 > - **🛠️ I want to contribute code or develop new features**: [Install from source](#install-from-source) → [Contributing](#contributing)
 - [News](#news)
@@ -103,7 +75,7 @@ From today on, QwenPaw will stay and grow with you!
 - [Roadmap](#roadmap)
 - [Install from source](#install-from-source)
 - [Contributing](#contributing)
-- [Why QwenPaw?](#why-qwenpaw)
+- [Why Orchestrator?](#why-qwenpaw)
 - [Built by](#built-by)
 - [License](#license)
 
@@ -129,7 +101,7 @@ Then open the Console in your browser at **http://127.0.0.1:8088/** to configure
 
 ### Option 2: Script install
 
-No Python setup required, one command installs everything. The script will automatically download uv (Python package manager), create a virtual environment, and install QwenPaw with all dependencies (including Node.js and frontend assets). Note: May not work in restricted network environments or corporate firewalls.
+No Python setup required, one command installs everything. The script will automatically download uv (Python package manager), create a virtual environment, and install Orchestrator with all dependencies (including Node.js and frontend assets). Note: May not work in restricted network environments or corporate firewalls.
 
 **macOS / Linux:**
 
@@ -158,9 +130,9 @@ irm https://qwenpaw.agentscope.io/install.ps1 | iex
 >
 >    The script completes file installation. Due to **Constrained Language Mode**, it cannot automatically update environment variables. Manually configure as follows:
 >    - **Locate the installation directory**:
->      - Check if `uv` is available: Enter `uv --version` in CMD. If a version number appears, **only configure the QwenPaw path**. If you receive the prompt `'uv' is not recognized as an internal or external command, operable program or batch file,` configure both paths.
+>      - Check if `uv` is available: Enter `uv --version` in CMD. If a version number appears, **only configure the Orchestrator path**. If you receive the prompt `'uv' is not recognized as an internal or external command, operable program or batch file,` configure both paths.
 >      - uv path (choose one based on installation location; use if `uv` fails): Typically `%USERPROFILE%\.local\bin`, `%USERPROFILE%\AppData\Local\uv`, or the `Scripts` folder within your Python installation directory
->      - QwenPaw path: Typically located at `%USERPROFILE%\.qwenpaw\bin`.
+>      - Orchestrator path: Typically located at `%USERPROFILE%\.qwenpaw\bin`.
 >    - **Manually add to the system's Path environment variable**:
 >      - Press `Win + R`, type `sysdm.cpl` and press Enter to open System Properties.
 >      - Click “Advanced” -> “Environment Variables”.
@@ -171,8 +143,8 @@ irm https://qwenpaw.agentscope.io/install.ps1 | iex
 >   Due to **Constrained Language Mode**, the script may fail to automatically download `uv`.
 >   - **Manually install uv**: Refer to the [GitHub Release](https://github.com/astral-sh/uv/releases) to download `uv.exe` and place it in `%USERPROFILE%\.local\bin` or `%USERPROFILE%\AppData\Local\uv`; or ensure Python is installed and run `python -m pip install -U uv`.
 >   - **Configure `uv` environment variables**: Add the `uv` directory and `%USERPROFILE%\.qwenpaw\bin` to your system's `Path` variable.
->   - **Re-run the installation**: Open a new terminal and execute the installation script again to complete the `QwenPaw` installation.
->   - **Configure the `QwenPaw` environment variable**: Add `%USERPROFILE%\.qwenpaw\bin` to your system's `Path` variable.
+>   - **Re-run the installation**: Open a new terminal and execute the installation script again to complete the `Orchestrator` installation.
+>   - **Configure the `Orchestrator` environment variable**: Add `%USERPROFILE%\.qwenpaw\bin` to your system's `Path` variable.
 
 Once installed, open a new terminal and run:
 
@@ -242,7 +214,7 @@ Then open **http://127.0.0.1:8088/** for the Console. Config, memory, and skills
 
 > **Connecting to Ollama or other services on the host machine**
 >
-> Inside a Docker container, `localhost` refers to the container itself, not your host machine. If you run Ollama (or other model services) on the host and want QwenPaw in Docker to reach them, use one of these approaches:
+> Inside a Docker container, `localhost` refers to the container itself, not your host machine. If you run Ollama (or other model services) on the host and want Orchestrator in Docker to reach them, use one of these approaches:
 >
 > **Option A** — Explicit host binding (all platforms):
 > ```bash
@@ -253,7 +225,7 @@ Then open **http://127.0.0.1:8088/** for the Console. Config, memory, and skills
 >   -v qwenpaw-backups:/app/working.backups \
 >   agentscope/qwenpaw:latest
 > ```
-> Then in QwenPaw **Settings → Models**, change the Base URL to `http://host.docker.internal:<port>` — for example, `http://host.docker.internal:11434` for Ollama, or `http://host.docker.internal:1234/v1` for LM Studio.
+> Then in Orchestrator **Settings → Models**, change the Base URL to `http://host.docker.internal:<port>` — for example, `http://host.docker.internal:11434` for Ollama, or `http://host.docker.internal:1234/v1` for LM Studio.
 >
 > **Option B** — Host networking (Linux only):
 > ```bash
@@ -273,13 +245,13 @@ The image is built from scratch. To build the image yourself, please refer to th
 
 ### Option 4: Deploy on Alibaba Cloud ECS
 
-To run QwenPaw on Alibaba Cloud (ECS), use the one-click deployment: open the [QwenPaw on Alibaba Cloud (ECS) deployment link](https://computenest.console.aliyun.com/service/instance/create/cn-hangzhou?type=user&ServiceId=service-1ed84201799f40879884) and follow the prompts. For step-by-step instructions, see [Alibaba Cloud Developer: Deploy your AI assistant in 3 minutes](https://developer.aliyun.com/article/1713682).
+To run Orchestrator on Alibaba Cloud (ECS), use the one-click deployment: open the [Orchestrator on Alibaba Cloud (ECS) deployment link](https://computenest.console.aliyun.com/service/instance/create/cn-hangzhou?type=user&ServiceId=service-1ed84201799f40879884) and follow the prompts. For step-by-step instructions, see [Alibaba Cloud Developer: Deploy your AI assistant in 3 minutes](https://developer.aliyun.com/article/1713682).
 
 ---
 
 ### Option 5: Using ModelScope
 
-**No local install?** [ModelScope Studio](https://modelscope.cn/studios/fork?target=AgentScope/QwenPaw) one-click cloud setup. Set your Studio to **non-public** so others cannot control your QwenPaw.
+**No local install?** [ModelScope Studio](https://modelscope.cn/studios/fork?target=AgentScope/Orchestrator) one-click cloud setup. Set your Studio to **non-public** so others cannot control your Orchestrator.
 
 ---
 
@@ -290,13 +262,13 @@ To run QwenPaw on Alibaba Cloud (ECS), use the one-click deployment: open the [Q
 > - **Potential performance issues**: Startup time, memory usage, and other performance aspects may need further optimization
 > - **Features under development**: Some features may be unstable or missing
 
-If you're not comfortable with command-line tools, you can download and use QwenPaw's desktop application without manually configuring Python environments or running commands.
+If you're not comfortable with command-line tools, you can download and use Orchestrator's desktop application without manually configuring Python environments or running commands.
 
 #### Download
 
-Download the desktop app from [GitHub Releases](https://github.com/agentscope-ai/QwenPaw/releases):
-- **Windows**: `QwenPaw-Setup-<version>.exe`
-- **macOS**: `QwenPaw-<version>-macOS.zip` (Apple Silicon recommended)
+Download the desktop app from [GitHub Releases](https://github.com/agentscope-ai/Orchestrator/releases):
+- **Windows**: `Orchestrator-Setup-<version>.exe`
+- **macOS**: `Orchestrator-<version>-macOS.zip` (Apple Silicon recommended)
 
 #### Features
 
@@ -311,17 +283,17 @@ Download the desktop app from [GitHub Releases](https://github.com/agentscope-ai
 
 #### macOS: Bypass System Security Restrictions
 
-When you download the QwenPaw macOS app from Releases, macOS may show: *"Apple cannot verify that 'QwenPaw' contains no malicious software"*. This happens because the app is not notarized. You can still open it as follows:
+When you download the Orchestrator macOS app from Releases, macOS may show: *"Apple cannot verify that 'Orchestrator' contains no malicious software"*. This happens because the app is not notarized. You can still open it as follows:
 
 - **Right-click to open (recommended)**
-  Right-click (or Control+click) the QwenPaw app → **Open** → in the dialog click **Open** again. This tells Gatekeeper you trust the app; after that you can double-click to launch as usual.
+  Right-click (or Control+click) the Orchestrator app → **Open** → in the dialog click **Open** again. This tells Gatekeeper you trust the app; after that you can double-click to launch as usual.
 
 - **Allow in System Settings**
-  If it is still blocked, go to **System Settings → Privacy & Security**, scroll to the message like *"QwenPaw was blocked because it is from an unidentified developer"*, and click **Open Anyway** or **Allow**.
+  If it is still blocked, go to **System Settings → Privacy & Security**, scroll to the message like *"Orchestrator was blocked because it is from an unidentified developer"*, and click **Open Anyway** or **Allow**.
 
 - **Remove quarantine attribute (not recommended for most users)**
   In Terminal run:
-  `xattr -cr /Applications/QwenPaw.app`
+  `xattr -cr /Applications/Orchestrator.app`
   (or use the path to the `.app` after unzipping). This clears the "downloaded from the internet" quarantine flag so the warning usually does not appear, but is less safe and controllable than using **Right-click → Open**.
 
 For detailed usage instructions, troubleshooting, and common issues, see the [Desktop Application Guide](https://qwenpaw.agentscope.io/docs/desktop).
@@ -330,7 +302,7 @@ For detailed usage instructions, troubleshooting, and common issues, see the [De
 
 ## API Key
 
-If you use a **cloud LLM API** (e.g., Qianwen, Gemini, OpenAI), you must configure an API key before chatting. QwenPaw will not work until a valid key is set. See the [official docs](https://qwenpaw.agentscope.io/docs/models) for details.
+If you use a **cloud LLM API** (e.g., Qianwen, Gemini, OpenAI), you must configure an API key before chatting. Orchestrator will not work until a valid key is set. See the [official docs](https://qwenpaw.agentscope.io/docs/models) for details.
 
 **How to configure:**
 
@@ -344,7 +316,7 @@ Tools that need extra keys (e.g. `TAVILY_API_KEY` for web search) can be set in 
 
 ## Local Models
 
-QwenPaw can run LLMs entirely on your machine — no API keys or cloud services required. See the [official docs](https://qwenpaw.agentscope.io/docs/models) for details.
+Orchestrator can run LLMs entirely on your machine — no API keys or cloud services required. See the [official docs](https://qwenpaw.agentscope.io/docs/models) for details.
 
 | Backend       | Best for                                 | Install                                                              |
 | ------------- | ---------------------------------------- | -------------------------------------------------------------------- |
@@ -358,7 +330,7 @@ QwenPaw can run LLMs entirely on your machine — no API keys or cloud services 
 
 | Topic                                                                 | Description                                      |
 | --------------------------------------------------------------------- | ------------------------------------------------ |
-| [Introduction](https://qwenpaw.agentscope.io/docs/intro)                | What QwenPaw is and how to use it                  |
+| [Introduction](https://qwenpaw.agentscope.io/docs/intro)                | What Orchestrator is and how to use it                  |
 | [Quick start](https://qwenpaw.agentscope.io/docs/quickstart)            | Install and run (local or ModelScope Studio)    |
 | [Console](https://qwenpaw.agentscope.io/docs/console)                   | Web UI: chat and agent configuration            |
 | [Models](https://qwenpaw.agentscope.io/docs/models)                     | Configure cloud, local, and custom providers    |
@@ -380,7 +352,7 @@ Full docs in this repo: [website/public/docs/](website/public/docs/).
 
 ## Security Features
 
-QwenPaw includes multi-layer security mechanisms to protect your data and system:
+Orchestrator includes multi-layer security mechanisms to protect your data and system:
 
 - **Tool guard** — Automatically intercepts dangerous shell commands (e.g., `rm -rf /`, fork bombs, reverse shells, etc.)
 - **File access guard** — Restricts agent access to sensitive paths (e.g., `~/.ssh`, key files, system directories, etc.)
@@ -400,11 +372,11 @@ For common questions, troubleshooting tips, and known issues, please visit the *
 
 ## Staying ahead
 
-<a href="https://github.com/agentscope-ai/QwenPaw">
-  <img src="https://img.alicdn.com/imgextra/i1/O1CN01V8HYv61By0HYcIDaq_!!6000000000013-1-tps-1698-954.gif" width="600" alt="Star QwenPaw" />
+<a href="https://github.com/agentscope-ai/Orchestrator">
+  <img src="https://img.alicdn.com/imgextra/i1/O1CN01V8HYv61By0HYcIDaq_!!6000000000013-1-tps-1698-954.gif" width="600" alt="Star Orchestrator" />
 </a>
 
-Star QwenPaw on GitHub and be instantly notified of new releases.
+Star Orchestrator on GitHub and be instantly notified of new releases.
 
 ---
 
@@ -417,14 +389,14 @@ Star QwenPaw on GitHub and be instantly notified of new releases.
 | **Multi-agent**                       | HiClaw integration: multi-tenant, cross-domain collaboration                                                                                     | In Progress          |
 |                                       | Agent Swarm / Team                                                                                                                               | Planned              |
 | **Small + Large Model Collaboration** | Intelligent switching between on-device and cloud models                                                                                         | In Progress          |
-| **QwenPaw Custom Models**             | Multimodal model support                                                                                                                           | Planned              |
+| **Orchestrator Custom Models**             | Multimodal model support                                                                                                                           | Planned              |
 | **Memory System**                     | Context-aware proactive delivery                                                                                                                   | In Progress          |
 | **Context Management**                | Abstract design                                                                                                                                  | In Progress          |
 |                                       | Intelligent context compression                                                                                                                  | Planned              |
 |                                       | User-selectable compression (fine-grained control)                                                                                                 | Planned              |
 | **Versioning & Migration**            | One-click packaging; multi-version / multi-device migration                                                                                        | In Progress          |
-|                                       | Agent protocol: QwenPaw → QwenPaw                                                                                                                | In Progress          |
-|                                       | Agent protocol: OpenClaw → QwenPaw                                                                                                               | Planned              |
+|                                       | Agent protocol: Orchestrator → Orchestrator                                                                                                                | In Progress          |
+|                                       | Agent protocol: OpenClaw → Orchestrator                                                                                                               | Planned              |
 |                                       | File area / chat rollback                                                                                                                        | In Progress          |
 | **Reliability & Self-operations**     | Self-update                                                                                                                                      | Planned              |
 |                                       | Failure rollback                                                                                                                                 | Planned              |
@@ -437,8 +409,8 @@ _Status:_ **In Progress** — actively being worked on; **Planned** — queued o
 ## Install from source
 
 ```bash
-git clone https://github.com/agentscope-ai/QwenPaw.git
-cd QwenPaw
+git clone https://github.com/agentscope-ai/Orchestrator.git
+cd Orchestrator
 
 # Build console frontend first (required for web UI)
 cd console && npm ci && npm run build
@@ -461,18 +433,18 @@ pip install -e .
 
 ## Contributing
 
-QwenPaw evolves through open collaboration, and we welcome all forms of contribution! Check the [Roadmap](#roadmap) above (especially items marked **Seeking Contributors**) to find areas that interest you, and read [CONTRIBUTING](https://github.com/agentscope-ai/QwenPaw/blob/main/CONTRIBUTING.md) to get started. We particularly welcome:
+Orchestrator evolves through open collaboration, and we welcome all forms of contribution! Check the [Roadmap](#roadmap) above (especially items marked **Seeking Contributors**) to find areas that interest you, and read [CONTRIBUTING](https://github.com/agentscope-ai/Orchestrator/blob/main/CONTRIBUTING.md) to get started. We particularly welcome:
 
 - **Horizontal expansion** — new channels, model providers, skills, MCPs.
 - **Existing feature extension & refinement** — display and interaction improvements, download hints, Windows path compatibility, etc.
 
-Join [GitHub Discussions](https://github.com/agentscope-ai/QwenPaw/discussions) to discuss ideas or pick up tasks.
+Join [GitHub Discussions](https://github.com/agentscope-ai/Orchestrator/discussions) to discuss ideas or pick up tasks.
 
 ---
 
-## Why QwenPaw?
+## Why Orchestrator?
 
-QwenPaw stands for Qwen Personal Agent Workstation, and also embodies the wisdom of Qwen and the warmth of a Paw.
+Orchestrator stands for Qwen Personal Agent Workstation, and also embodies the wisdom of Qwen and the warmth of a Paw.
 We hope it is not a cold tool, but an intelligent and warm "little paw" always ready to help—a most intuitive partner in your digital life.
 
 ---
@@ -493,11 +465,11 @@ We hope it is not a cold tool, but an intelligent and warm "little paw" always r
 
 ## Telemetry
 
-QwenPaw collects **anonymous** usage data during `qwenpaw init` to help us understand our user base and prioritize improvements. Data is sent **once per version** — when you upgrade QwenPaw, telemetry is re-collected so we can track version adoption.
+Orchestrator collects **anonymous** usage data during `qwenpaw init` to help us understand our user base and prioritize improvements. Data is sent **once per version** — when you upgrade Orchestrator, telemetry is re-collected so we can track version adoption.
 
 **What we collect:**
 
-- QwenPaw version (e.g., 0.0.7)
+- Orchestrator version (e.g., 0.0.7)
 - Install method (pip, Docker, or desktop app)
 - OS and version (e.g., macOS 14.0, Ubuntu 22.04)
 - Python version (e.g., 3.13)
@@ -506,13 +478,13 @@ QwenPaw collects **anonymous** usage data during `qwenpaw init` to help us under
 
 **What we do NOT collect:** No personal data, no files, no credentials, no IP addresses, no identifiable information.
 
-When running `qwenpaw init` interactively, you will be asked whether to opt in. If you choose `--defaults`, telemetry is accepted automatically. The prompt appears once per version and never affects QwenPaw's functionality.
+When running `qwenpaw init` interactively, you will be asked whether to opt in. If you choose `--defaults`, telemetry is accepted automatically. The prompt appears once per version and never affects Orchestrator's functionality.
 
 ---
 
 ## License
 
-QwenPaw is released under the [Apache License 2.0](LICENSE).
+Orchestrator is released under the [Apache License 2.0](LICENSE).
 
 ---
 
@@ -520,6 +492,6 @@ QwenPaw is released under the [Apache License 2.0](LICENSE).
 
 All thanks to our contributors:
 
-<a href="https://github.com/agentscope-ai/QwenPaw/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=agentscope-ai/QwenPaw" alt="Contributors" />
+<a href="https://github.com/agentscope-ai/Orchestrator/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=agentscope-ai/Orchestrator" alt="Contributors" />
 </a>

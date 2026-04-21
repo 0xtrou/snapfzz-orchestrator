@@ -1,6 +1,6 @@
 # 插件系统
 
-QwenPaw 提供了插件系统，允许用户扩展 QwenPaw 的功能。
+Orchestrator 提供了插件系统，允许用户扩展 Orchestrator 的功能。
 
 ## 概述
 
@@ -35,7 +35,7 @@ qwenpaw plugin install https://example.com/plugin.zip
 qwenpaw plugin install /path/to/plugin --force
 ```
 
-**注意**：插件操作只能在 QwenPaw 离线时执行。
+**注意**：插件操作只能在 Orchestrator 离线时执行。
 
 ### 列出已安装插件
 
@@ -166,18 +166,18 @@ my-plugin/
 #### src/index.tsx
 
 ```tsx
-const { React, antd } = (window as any).QwenPaw.host;
+const { React, antd } = (window as any).Orchestrator.host;
 
 class MyPlugin {
   readonly id = "my-plugin";
 
   setup(): void {
     // 注册侧边栏页面
-    // (window as any).QwenPaw.registerRoutes?.(this.id, [...]);
+    // (window as any).Orchestrator.registerRoutes?.(this.id, [...]);
     // 注册工具调用渲染器
-    // (window as any).QwenPaw.registerToolRender?.(this.id, {...});
+    // (window as any).Orchestrator.registerToolRender?.(this.id, {...});
     // 访问并修改应用内部模块
-    // const mod = (window as any).QwenPaw?.modules?.['xxxx'];
+    // const mod = (window as any).Orchestrator?.modules?.['xxxx'];
   }
 }
 
@@ -241,7 +241,7 @@ cp -r . ~/.qwenpaw/plugins/my-plugin/
 qwenpaw app
 ```
 
-**说明**：`window.QwenPaw.host` 提供以下共享库，插件无需自行打包：
+**说明**：`window.Orchestrator.host` 提供以下共享库，插件无需自行打包：
 
 | 名称              | 类型                       | 说明               |
 | ----------------- | -------------------------- | ------------------ |
@@ -255,7 +255,7 @@ qwenpaw app
 - `jsxRuntime: "classic"` — 将 JSX 编译为 `React.createElement`，使用宿主提供的 `React`，无需在插件中引入
 - `external: ["react", "react-dom"]` — 不打包 React，使用应用已加载的版本
 
-**`window.QwenPaw.modules`**：应用启动时会将 `src/pages/` 下的所有模块自动注册到此对象，插件可通过模块键名访问并替换内部导出
+**`window.Orchestrator.modules`**：应用启动时会将 `src/pages/` 下的所有模块自动注册到此对象，插件可通过模块键名访问并替换内部导出
 
 > ⚠️ **注意**：`modules` 中的模块结构未作为公开 API 维护，可能随版本变化而调整，使用前请确认兼容性。
 
@@ -392,7 +392,7 @@ plugin = MyLLMProviderPlugin()
 # 安装插件
 qwenpaw plugin install my-llm-provider
 
-# 启动 QwenPaw
+# 启动 Orchestrator
 qwenpaw app
 
 # 在 Web UI 中配置 API Key
@@ -401,7 +401,7 @@ qwenpaw app
 
 ### 示例 2：添加启动钩子
 
-假设你想在 QwenPaw 启动时初始化一个监控服务。
+假设你想在 Orchestrator 启动时初始化一个监控服务。
 
 #### 1. 创建插件
 
@@ -457,7 +457,7 @@ class MonitoringHookPlugin:
 
                 # 初始化你的监控服务
                 # from my_monitoring import init_monitoring
-                # init_monitoring(app_name="QwenPaw")
+                # init_monitoring(app_name="Orchestrator")
 
                 logger.info("✓ Monitoring initialized successfully")
 
@@ -660,14 +660,14 @@ mkdir welcome-plugin && cd welcome-plugin
 #### 3. 创建 src/index.tsx
 
 ```tsx
-const { React, antd } = (window as any).QwenPaw.host;
+const { React, antd } = (window as any).Orchestrator.host;
 const { Typography, Card } = antd;
 const { Title, Paragraph } = Typography;
 
 function WelcomePage() {
   return (
     <Card style={{ maxWidth: 480, margin: "40px auto" }}>
-      <Title level={2}>Welcome to QwenPaw 👋</Title>
+      <Title level={2}>Welcome to Orchestrator 👋</Title>
       <Paragraph>插件系统运行正常！</Paragraph>
     </Card>
   );
@@ -677,7 +677,7 @@ class WelcomePlugin {
   readonly id = "welcome-plugin";
 
   setup(): void {
-    (window as any).QwenPaw.registerRoutes?.(this.id, [
+    (window as any).Orchestrator.registerRoutes?.(this.id, [
       {
         path: "/plugin/welcome-plugin/home",
         component: WelcomePage,
@@ -776,7 +776,7 @@ mkdir tool-render-plugin && cd tool-render-plugin
 #### 3. 创建 src/index.tsx
 
 ```tsx
-const { React, antd } = (window as any).QwenPaw.host;
+const { React, antd } = (window as any).Orchestrator.host;
 const { Card } = antd;
 
 function MyToolCard({ result }) {
@@ -791,7 +791,7 @@ class ToolRenderPlugin {
   readonly id = "tool-render-plugin";
 
   setup(): void {
-    (window as any).QwenPaw.registerToolRender?.(this.id, {
+    (window as any).Orchestrator.registerToolRender?.(this.id, {
       my_tool_name: MyToolCard, // key = tool name returned by Agent
     });
   }
@@ -842,7 +842,7 @@ class CustomGreetingPlugin {
   readonly id = "custom-greeting-plugin";
 
   setup(): void {
-    const mod = (window as any).QwenPaw?.modules?.[
+    const mod = (window as any).Orchestrator?.modules?.[
       "Chat/OptionsPanel/defaultConfig"
     ];
     if (!mod?.configProvider) {
@@ -851,7 +851,7 @@ class CustomGreetingPlugin {
     }
 
     // 替换聊天欢迎语
-    mod.configProvider.getGreeting = () => "你好！我是定制版 QwenPaw 👋";
+    mod.configProvider.getGreeting = () => "你好！我是定制版 Orchestrator 👋";
 
     // 替换聊天描述
     mod.configProvider.getDescription = () => "这是一个定制化的聊天助手";
@@ -979,7 +979,7 @@ api.register_startup_hook("late", callback, priority=200)
    qwenpaw plugin list
    ```
 
-2. 查看 QwenPaw 日志：
+2. 查看 Orchestrator 日志：
 
    ```bash
    tail -f ~/.qwenpaw/logs/qwenpaw.log | grep -i plugin
@@ -1001,7 +1001,7 @@ api.register_startup_hook("late", callback, priority=200)
 
 ### Provider 未显示
 
-1. 确认插件已安装并重启 QwenPaw
+1. 确认插件已安装并重启 Orchestrator
 2. 检查 Web UI 的模型管理页面
 3. 查看日志中的 provider 注册信息
 
@@ -1013,10 +1013,10 @@ api.register_startup_hook("late", callback, priority=200)
 
 ## 安全注意事项
 
-1. **只安装可信插件**：插件代码会在 QwenPaw 进程中执行
+1. **只安装可信插件**：插件代码会在 Orchestrator 进程中执行
 2. **检查依赖**：确保插件依赖来自可信源
 3. **审查代码**：安装前审查插件源代码
-4. **离线操作**：插件安装/卸载需要 QwenPaw 离线
+4. **离线操作**：插件安装/卸载需要 Orchestrator 离线
 
 ## PluginApi 参考
 
@@ -1062,7 +1062,7 @@ api.register_shutdown_hook(
 
 ### Monkey Patch
 
-对于需要修改 QwenPaw 行为的插件（如自定义命令），可以使用 monkey patch：
+对于需要修改 Orchestrator 行为的插件（如自定义命令），可以使用 monkey patch：
 
 ```python
 def _patch_query_handler(self):
@@ -1112,7 +1112,7 @@ qwenpaw plugin install https://example.com/my-plugin-1.0.0.zip
 
 ## 常见问题
 
-### Q: 插件可以访问哪些 QwenPaw API？
+### Q: 插件可以访问哪些 Orchestrator API？
 
 A: 插件通过 `PluginApi` 访问核心功能，包括：
 
@@ -1120,7 +1120,7 @@ A: 插件通过 `PluginApi` 访问核心功能，包括：
 - Hook 注册
 - Runtime helpers（provider_manager 等）
 
-### Q: 插件可以修改 QwenPaw 的核心行为吗？
+### Q: 插件可以修改 Orchestrator 的核心行为吗？
 
 A: 可以，通过 monkey patch 或 hook 机制。但请谨慎使用，确保不会破坏核心功能。
 

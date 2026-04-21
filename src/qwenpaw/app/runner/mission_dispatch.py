@@ -60,7 +60,7 @@ async def maybe_handle_mission_command(
 
     if isinstance(result, str):
         return Msg(
-            name="Friday",
+            name="Orchestrator",
             role="assistant",
             content=[TextBlock(type="text", text=result)],
         )

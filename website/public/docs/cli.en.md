@@ -1,6 +1,6 @@
 # CLI
 
-`qwenpaw` is the command-line tool for QwenPaw. This page is organized from
+`qwenpaw` is the command-line tool for Orchestrator. This page is organized from
 "get-up-and-running" to "advanced management" — read from top to bottom if
 you're new, or jump to the section you need.
 
@@ -33,7 +33,7 @@ qwenpaw init --force      # Overwrite existing config files
 
 ### qwenpaw app
 
-Start the QwenPaw server. Everything else — channels, cron jobs, the Console
+Start the Orchestrator server. Everything else — channels, cron jobs, the Console
 UI — depends on this.
 
 ```bash
@@ -48,9 +48,9 @@ qwenpaw app --log-level debug           # Verbose logging
 | `--port`      | `8088`      | Bind port                                                     |
 | `--reload`    | off         | Auto-reload on file changes (dev only)                        |
 | `--log-level` | `info`      | `critical` / `error` / `warning` / `info` / `debug` / `trace` |
-| `--workers`   | —           | **[DEPRECATED]** Ignored. QwenPaw always uses 1 worker        |
+| `--workers`   | —           | **[DEPRECATED]** Ignored. Orchestrator always uses 1 worker        |
 
-> **Note:** The `--workers` option is deprecated for stability reasons. QwenPaw is designed to run with a single worker process. Multi-worker mode can cause issues with in-memory state management and WebSocket connections. This option will be removed in a future version.
+> **Note:** The `--workers` option is deprecated for stability reasons. Orchestrator is designed to run with a single worker process. Multi-worker mode can cause issues with in-memory state management and WebSocket connections. This option will be removed in a future version.
 
 ### Console
 
@@ -58,7 +58,7 @@ Once `qwenpaw app` is running, open `http://127.0.0.1:8088/` in your browser to
 access the **Console** — a web UI for chat, channels, cron, skills, models,
 and more. See [Console](./console) for a full walkthrough.
 
-If the frontend was not built, the root URL returns a JSON message like `{"message": "QwenPaw Web Console is not available."}` but the API still works.
+If the frontend was not built, the root URL returns a JSON message like `{"message": "Orchestrator Web Console is not available."}` but the API still works.
 
 **To build the frontend:** in the project's `console/` directory run
 `npm ci && npm run build`, then copy the output to the package directory:
@@ -173,7 +173,7 @@ directory using the same relative paths.
 
 ## Models & environment variables
 
-Before using QwenPaw you need at least one LLM provider configured. Environment
+Before using Orchestrator you need at least one LLM provider configured. Environment
 variables power many built-in tools (e.g. web search).
 
 ### qwenpaw models
@@ -201,7 +201,7 @@ qwenpaw models set-llm                 # Change active model only
 
 #### Local models
 
-QwenPaw can also run models locally via llama.cpp, Ollama, or LM Studio — no API key needed.
+Orchestrator can also run models locally via llama.cpp, Ollama, or LM Studio — no API key needed.
 But you need to download the corresponding application first, such as [Ollama](https://ollama.com/download) or [LM Studio](https://lmstudio.ai/download).
 
 ```bash
@@ -226,7 +226,7 @@ qwenpaw models remove-local <model_id> --yes   # skip confirmation
 
 #### Ollama models
 
-QwenPaw integrates with Ollama to run models locally. Models are dynamically loaded from your Ollama daemon — install Ollama first from [ollama.com](https://ollama.com).
+Orchestrator integrates with Ollama to run models locally. Models are dynamically loaded from your Ollama daemon — install Ollama first from [ollama.com](https://ollama.com).
 
 Install the Ollama SDK: `pip install 'qwenpaw[ollama]'` (or re-run the installer with `--extras ollama`)
 
@@ -248,11 +248,11 @@ qwenpaw models set-llm          # Switch to a different Ollama model
 
 **Key differences from local models:**
 
-- Models come from Ollama daemon (not downloaded by QwenPaw)
+- Models come from Ollama daemon (not downloaded by Orchestrator)
 - Use `ollama` CLI to manage models (not `qwenpaw models download/remove-local`)
-- Model list updates dynamically when you add/remove via Ollama CLI or QwenPaw
+- Model list updates dynamically when you add/remove via Ollama CLI or Orchestrator
 
-> **Note:** You are responsible for ensuring the API key is valid. QwenPaw does
+> **Note:** You are responsible for ensuring the API key is valid. Orchestrator does
 > not verify key correctness. See [Config — LLM Providers](./config#llm-providers).
 
 ### qwenpaw env
@@ -272,7 +272,7 @@ qwenpaw env set GITHUB_TOKEN "ghp_xxxxxxxx"
 qwenpaw env delete TAVILY_API_KEY
 ```
 
-> **Note:** QwenPaw only stores and loads these values; you are responsible for
+> **Note:** Orchestrator only stores and loads these values; you are responsible for
 > ensuring they are correct. See
 > [Config — Environment Variables](./config#environment-variables).
 
@@ -280,7 +280,7 @@ qwenpaw env delete TAVILY_API_KEY
 
 ## Channels
 
-Connect QwenPaw to messaging platforms.
+Connect Orchestrator to messaging platforms.
 
 ### qwenpaw channels
 
@@ -482,7 +482,7 @@ When tasks are complex (e.g., data analysis, batch processing, report generation
 ## Cron (scheduled tasks)
 
 Create jobs that run on a timed schedule — "every day at 9am", "every 2 hours
-ask QwenPaw and send the reply". **Requires `qwenpaw app` to be running.**
+ask Orchestrator and send the reply". **Requires `qwenpaw app` to be running.**
 
 ### qwenpaw cron
 
@@ -506,7 +506,7 @@ ask QwenPaw and send the reply". **Requires `qwenpaw app` to be running.**
 Two task types:
 
 - **text** — send a fixed message to a channel on schedule.
-- **agent** — ask QwenPaw a question on schedule and deliver the reply.
+- **agent** — ask Orchestrator a question on schedule and deliver the reply.
 
 ```bash
 # Text: send "Good morning!" to DingTalk every day at 9:00 (default agent)
@@ -598,7 +598,7 @@ qwenpaw chats delete <chat_id>
 
 ## Skills
 
-Extend QwenPaw's capabilities with skills (PDF reading, web search, etc.).
+Extend Orchestrator's capabilities with skills (PDF reading, web search, etc.).
 
 ### qwenpaw skills
 
@@ -705,7 +705,7 @@ See [Config & Working Directory](./config) and [Multi-Agent](./multi-agent) for 
 
 ## Related pages
 
-- [Introduction](./intro) — What QwenPaw can do
+- [Introduction](./intro) — What Orchestrator can do
 - [Console](./console) — Web-based management UI
 - [Channels](./channels) — DingTalk, Feishu, iMessage, Discord, QQ setup
 - [Heartbeat](./heartbeat) — Scheduled check-in / digest

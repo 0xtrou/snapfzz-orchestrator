@@ -10,14 +10,23 @@ if _env_path.exists():
 
 
 def _get_env(key: str, default: str = "") -> str:
-    """Look up an env var with automatic COPAW_ legacy fallback.
+    """Look up an env var with automatic QWENPAW_ and COPAW_ legacy fallback.
 
     Primary key is always used as-is.  When the primary key starts with
-    ``QWENPAW_``, the corresponding ``COPAW_`` variant is transparently
-    checked as a fallback so that existing deployments keep working.
+    ``ORCHESTRATOR_``, the corresponding ``QWENPAW_`` and ``COPAW_`` variants
+    are transparently checked as fallbacks so that existing deployments keep
+    working.  When the primary key starts with ``QWENPAW_``, the ``COPAW_``
+    variant is checked as a fallback.
     """
     if key in os.environ:
         return os.environ[key]
+    if key.startswith("ORCHESTRATOR_"):
+        qwenpaw_key = "QWENPAW_" + key[len("ORCHESTRATOR_") :]
+        if qwenpaw_key in os.environ:
+            return os.environ[qwenpaw_key]
+        copaw_key = "COPAW_" + key[len("ORCHESTRATOR_") :]
+        if copaw_key in os.environ:
+            return os.environ[copaw_key]
     if key.startswith("QWENPAW_"):
         legacy_key = "COPAW_" + key[len("QWENPAW_") :]
         if legacy_key in os.environ:
@@ -27,8 +36,8 @@ def _get_env(key: str, default: str = "") -> str:
 
 class EnvVarLoader:
     """Utility to load and parse environment variables with type safety
-    and defaults.  Pass QWENPAW_* keys; COPAW_* legacy variants are
-    checked automatically as a fallback inside _get_env.
+    and defaults.  Pass ORCHESTRATOR_* keys; QWENPAW_* and COPAW_* legacy
+    variants are checked automatically as a fallback inside _get_env.
     """
 
     @staticmethod
@@ -87,22 +96,26 @@ class EnvVarLoader:
 
 
 # WORKING_DIR priority:
-# 1. QWENPAW_WORKING_DIR / COPAW_WORKING_DIR env var is set → use it
-# 2. ~/.copaw exists (legacy installation) → use it as-is
-# 3. Default → ~/.qwenpaw
-_explicit_working_dir = _get_env("QWENPAW_WORKING_DIR")
+# 1. ORCHESTRATOR_WORKING_DIR / QWENPAW_WORKING_DIR / COPAW_WORKING_DIR env var is set → use it
+# 2. ~/.qwenpaw exists (legacy installation) → use it as-is
+# 3. ~/.copaw exists (legacy installation) → use it as-is
+# 4. Default → ~/.orchestrator
+_explicit_working_dir = _get_env("ORCHESTRATOR_WORKING_DIR")
 if _explicit_working_dir:
     WORKING_DIR = Path(_explicit_working_dir).expanduser().resolve()
 else:
+    _legacy_qwenpaw_dir = Path("~/.qwenpaw").expanduser()
     _legacy_copaw_dir = Path("~/.copaw").expanduser()
-    if _legacy_copaw_dir.exists():
+    if _legacy_qwenpaw_dir.exists():
+        WORKING_DIR = _legacy_qwenpaw_dir.resolve()
+    elif _legacy_copaw_dir.exists():
         WORKING_DIR = _legacy_copaw_dir.resolve()
     else:
-        WORKING_DIR = Path("~/.qwenpaw").expanduser().resolve()
+        WORKING_DIR = Path("~/.orchestrator").expanduser().resolve()
 SECRET_DIR = (
     Path(
         EnvVarLoader.get_str(
-            "QWENPAW_SECRET_DIR",
+            "ORCHESTRATOR_SECRET_DIR",
             f"{WORKING_DIR}.secret",
         ),
     )
@@ -110,7 +123,8 @@ SECRET_DIR = (
     .resolve()
 )
 
-PROJECT_NAME = "QwenPaw"
+PROJECT_NAME = "Orchestrator"
+AGENT_APP_NAME = "Orchestrator"
 
 # Default media directory for channels (cross-platform)
 DEFAULT_MEDIA_DIR = WORKING_DIR / "media"
@@ -118,9 +132,9 @@ DEFAULT_MEDIA_DIR = WORKING_DIR / "media"
 # Default local provider directory
 DEFAULT_LOCAL_PROVIDER_DIR = WORKING_DIR / "local_models"
 
-JOBS_FILE = EnvVarLoader.get_str("QWENPAW_JOBS_FILE", "jobs.json")
+JOBS_FILE = EnvVarLoader.get_str("ORCHESTRATOR_JOBS_FILE", "jobs.json")
 
-CHATS_FILE = EnvVarLoader.get_str("QWENPAW_CHATS_FILE", "chats.json")
+CHATS_FILE = EnvVarLoader.get_str("ORCHESTRATOR_CHATS_FILE", "chats.json")
 
 # Builtin Q&A helper profile.  agent_id keeps "QwenPaw" prefix for existing
 # workspaces and agent.json; do not rename.
@@ -138,36 +152,36 @@ BUILTIN_QA_AGENT_SKILL_NAMES: tuple[str, ...] = (
 LEGACY_QA_AGENT_ID = "CoPaw_QA_Agent_0.1beta1"
 
 TOKEN_USAGE_FILE = EnvVarLoader.get_str(
-    "QWENPAW_TOKEN_USAGE_FILE",
+    "ORCHESTRATOR_TOKEN_USAGE_FILE",
     "token_usage.json",
 )
 
-CONFIG_FILE = EnvVarLoader.get_str("QWENPAW_CONFIG_FILE", "config.json")
+CONFIG_FILE = EnvVarLoader.get_str("ORCHESTRATOR_CONFIG_FILE", "config.json")
 
-HEARTBEAT_FILE = EnvVarLoader.get_str("QWENPAW_HEARTBEAT_FILE", "HEARTBEAT.md")
+HEARTBEAT_FILE = EnvVarLoader.get_str("ORCHESTRATOR_HEARTBEAT_FILE", "HEARTBEAT.md")
 HEARTBEAT_DEFAULT_EVERY = "6h"
 HEARTBEAT_DEFAULT_TARGET = "main"
 HEARTBEAT_TARGET_LAST = "last"
 
 # Debug history file for /dump_history and /load_history commands
 DEBUG_HISTORY_FILE = EnvVarLoader.get_str(
-    "QWENPAW_DEBUG_HISTORY_FILE",
+    "ORCHESTRATOR_DEBUG_HISTORY_FILE",
     "debug_history.jsonl",
 )
 MAX_LOAD_HISTORY_COUNT = 10000
 
 # Env key for app log level (used by CLI and app load for reload child).
-LOG_LEVEL_ENV = "QWENPAW_LOG_LEVEL"
+LOG_LEVEL_ENV = "ORCHESTRATOR_LOG_LEVEL"
 
 # Env to indicate running inside a container (e.g. Docker). Set to 1/true/yes.
 RUNNING_IN_CONTAINER = EnvVarLoader.get_bool(
-    "QWENPAW_RUNNING_IN_CONTAINER",
+    "ORCHESTRATOR_RUNNING_IN_CONTAINER",
     False,
 )
 
 # Timeout in seconds for checking if a provider is reachable.
 MODEL_PROVIDER_CHECK_TIMEOUT = EnvVarLoader.get_float(
-    "QWENPAW_MODEL_PROVIDER_CHECK_TIMEOUT",
+    "ORCHESTRATOR_MODEL_PROVIDER_CHECK_TIMEOUT",
     5.0,
     min_value=0,
     allow_inf=False,
@@ -178,7 +192,7 @@ PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH_ENV = "PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH"
 
 # When True, expose /docs, /redoc, /openapi.json
 # (dev only; keep False in prod).
-DOCS_ENABLED = EnvVarLoader.get_bool("QWENPAW_OPENAPI_DOCS", False)
+DOCS_ENABLED = EnvVarLoader.get_bool("ORCHESTRATOR_OPENAPI_DOCS", False)
 
 # Memory directory
 MEMORY_DIR = WORKING_DIR / "memory"
@@ -187,7 +201,7 @@ MEMORY_DIR = WORKING_DIR / "memory"
 BACKUP_DIR = (
     Path(
         EnvVarLoader.get_str(
-            "QWENPAW_BACKUP_DIR",
+            "ORCHESTRATOR_BACKUP_DIR",
             f"{WORKING_DIR}.backups",
         ),
     )
@@ -206,14 +220,14 @@ PLUGINS_DIR = WORKING_DIR / "plugins"
 MODELS_DIR = WORKING_DIR / "models"
 
 MEMORY_COMPACT_KEEP_RECENT = EnvVarLoader.get_int(
-    "QWENPAW_MEMORY_COMPACT_KEEP_RECENT",
+    "ORCHESTRATOR_MEMORY_COMPACT_KEEP_RECENT",
     3,
     min_value=0,
 )
 
 # Memory compaction configuration
 MEMORY_COMPACT_RATIO = EnvVarLoader.get_float(
-    "QWENPAW_MEMORY_COMPACT_RATIO",
+    "ORCHESTRATOR_MEMORY_COMPACT_RATIO",
     0.7,
     min_value=0,
     allow_inf=False,
@@ -225,25 +239,25 @@ DASHSCOPE_BASE_URL = EnvVarLoader.get_str(
 )
 
 # CORS configuration — comma-separated list of allowed origins for dev mode.
-# Example: QWENPAW_CORS_ORIGINS="http://localhost:5173,http://127.0.0.1:5173"
+# Example: ORCHESTRATOR_CORS_ORIGINS="http://localhost:5173,http://127.0.0.1:5173"
 # When unset, CORS middleware is not applied.
-CORS_ORIGINS = EnvVarLoader.get_str("QWENPAW_CORS_ORIGINS", "").strip()
+CORS_ORIGINS = EnvVarLoader.get_str("ORCHESTRATOR_CORS_ORIGINS", "").strip()
 
 # LLM API retry configuration
 LLM_MAX_RETRIES = EnvVarLoader.get_int(
-    "QWENPAW_LLM_MAX_RETRIES",
+    "ORCHESTRATOR_LLM_MAX_RETRIES",
     3,
     min_value=0,
 )
 
 LLM_BACKOFF_BASE = EnvVarLoader.get_float(
-    "QWENPAW_LLM_BACKOFF_BASE",
+    "ORCHESTRATOR_LLM_BACKOFF_BASE",
     1.0,
     min_value=0.1,
 )
 
 LLM_BACKOFF_CAP = EnvVarLoader.get_float(
-    "QWENPAW_LLM_BACKOFF_CAP",
+    "ORCHESTRATOR_LLM_BACKOFF_CAP",
     10.0,
     min_value=0.5,
 )
@@ -253,7 +267,7 @@ LLM_BACKOFF_CAP = EnvVarLoader.get_float(
 # the semaphore.  Tune to your API quota: start conservatively at 3-5 and
 # increase (e.g. OpenAI Tier 1 ~500 QPM allows ~25 at 3 s/call average).
 LLM_MAX_CONCURRENT = EnvVarLoader.get_int(
-    "QWENPAW_LLM_MAX_CONCURRENT",
+    "ORCHESTRATOR_LLM_MAX_CONCURRENT",
     10,
     min_value=1,
 )
@@ -264,7 +278,7 @@ LLM_MAX_CONCURRENT = EnvVarLoader.get_int(
 # 0 = unlimited (disabled).
 # Examples: Anthropic Tier-1 ≈ 50 QPM; OpenAI Tier-1 ≈ 500 QPM.
 LLM_MAX_QPM = EnvVarLoader.get_int(
-    "QWENPAW_LLM_MAX_QPM",
+    "ORCHESTRATOR_LLM_MAX_QPM",
     600,
     min_value=0,
 )
@@ -272,7 +286,7 @@ LLM_MAX_QPM = EnvVarLoader.get_int(
 # Default global pause duration (seconds) applied to all waiters when a 429
 # is received.  Overridden by the API's Retry-After header when present.
 LLM_RATE_LIMIT_PAUSE = EnvVarLoader.get_float(
-    "QWENPAW_LLM_RATE_LIMIT_PAUSE",
+    "ORCHESTRATOR_LLM_RATE_LIMIT_PAUSE",
     5.0,
     min_value=1.0,
 )
@@ -280,7 +294,7 @@ LLM_RATE_LIMIT_PAUSE = EnvVarLoader.get_float(
 # Random jitter range (seconds) added on top of the pause remaining time so
 # concurrent waiters stagger their wake-up and avoid a new burst.
 LLM_RATE_LIMIT_JITTER = EnvVarLoader.get_float(
-    "QWENPAW_LLM_RATE_LIMIT_JITTER",
+    "ORCHESTRATOR_LLM_RATE_LIMIT_JITTER",
     1.0,
     min_value=0.0,
 )
@@ -288,7 +302,7 @@ LLM_RATE_LIMIT_JITTER = EnvVarLoader.get_float(
 # Maximum time (seconds) a caller will wait for a semaphore slot before
 # giving up with a RuntimeError rather than blocking indefinitely.
 LLM_ACQUIRE_TIMEOUT = EnvVarLoader.get_float(
-    "QWENPAW_LLM_ACQUIRE_TIMEOUT",
+    "ORCHESTRATOR_LLM_ACQUIRE_TIMEOUT",
     300.0,
     min_value=10.0,
 )
@@ -297,7 +311,7 @@ LLM_ACQUIRE_TIMEOUT = EnvVarLoader.get_float(
 try:
     TOOL_GUARD_APPROVAL_TIMEOUT_SECONDS = max(
         float(
-            _get_env("QWENPAW_TOOL_GUARD_APPROVAL_TIMEOUT_SECONDS", "600"),
+            _get_env("ORCHESTRATOR_TOOL_GUARD_APPROVAL_TIMEOUT_SECONDS", "600"),
         ),
         1.0,
     )

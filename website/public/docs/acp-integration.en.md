@@ -1,22 +1,22 @@
 # ACP Integration
 
-QwenPaw supports **ACP (Agent Client Protocol)** in two complementary ways:
+Orchestrator supports **ACP (Agent Client Protocol)** in two complementary ways:
 
-1. **QwenPaw as an ACP Server** — external clients connect to QwenPaw over ACP
-2. **QwenPaw using ACP as a Tool** — QwenPaw connects to external ACP runners and collaborates with them as delegated agents
+1. **Orchestrator as an ACP Server** — external clients connect to Orchestrator over ACP
+2. **Orchestrator using ACP as a Tool** — Orchestrator connects to external ACP runners and collaborates with them as delegated agents
 
 This page explains both modes and when to use each one.
 
 ---
 
-## QwenPaw as ACP Server
+## Orchestrator as ACP Server
 
-In this mode, QwenPaw exposes itself as an [Agent Client Protocol (ACP)](https://github.com/agentclientprotocol/python-sdk) compliant agent server over stdio JSON-RPC. External clients — such as [Zed](https://zed.dev), [OpenCode](https://github.com/nicholasgasior/opencode), or any ACP-compatible editor — can connect to QwenPaw via the `qwenpaw acp` CLI command and interact with it programmatically.
+In this mode, Orchestrator exposes itself as an [Agent Client Protocol (ACP)](https://github.com/agentclientprotocol/python-sdk) compliant agent server over stdio JSON-RPC. External clients — such as [Zed](https://zed.dev), [OpenCode](https://github.com/nicholasgasior/opencode), or any ACP-compatible editor — can connect to Orchestrator via the `qwenpaw acp` CLI command and interact with it programmatically.
 
 ### Quick Start
 
 ```bash
-# Start QwenPaw as an ACP agent
+# Start Orchestrator as an ACP agent
 qwenpaw acp
 
 # Use a specific agent profile
@@ -90,22 +90,22 @@ The ACP agent resolves its configuration in the following order:
 
 ---
 
-## QwenPaw using ACP as a Tool
+## Orchestrator using ACP as a Tool
 
-QwenPaw can also use ACP in the opposite direction: instead of being the server that external clients connect to, it can act as an **ACP client / orchestrator** that connects to **configured and enabled external ACP runners** and brings them into the current session as delegated collaboration capabilities.
+Orchestrator can also use ACP in the opposite direction: instead of being the server that external clients connect to, it can act as an **ACP client / orchestrator** that connects to **configured and enabled external ACP runners** and brings them into the current session as delegated collaboration capabilities.
 
-The actual entry point for this mode is the built-in tool `delegate_external_agent`. It is intended for scenarios where QwenPaw needs to collaborate with other ACP-capable external agent runtimes. In the source code, the built-in runner set includes `opencode`, `qwen_code`, `claude_code`, and `codex`. For more ACP-compatible agents, see the official ACP agent list and integration guide: <https://agentclientprotocol.com/get-started/agents>. In other words, QwenPaw does not directly talk to arbitrary external agents by default — it talks to runners that have been registered in ACP configuration and are available to the current agent.
+The actual entry point for this mode is the built-in tool `delegate_external_agent`. It is intended for scenarios where Orchestrator needs to collaborate with other ACP-capable external agent runtimes. In the source code, the built-in runner set includes `opencode`, `qwen_code`, `claude_code`, and `codex`. For more ACP-compatible agents, see the official ACP agent list and integration guide: <https://agentclientprotocol.com/get-started/agents>. In other words, Orchestrator does not directly talk to arbitrary external agents by default — it talks to runners that have been registered in ACP configuration and are available to the current agent.
 
 ### What this mode does
 
-In this mode, QwenPaw uses the built-in `delegate_external_agent` tool to:
+In this mode, Orchestrator uses the built-in `delegate_external_agent` tool to:
 
 - start a session with an external ACP runner
 - send follow-up messages to that runner
 - respond to permission requests raised by that runner
 - close the delegated session when work is complete
 
-Conceptually, this allows QwenPaw to treat an external agent as a cooperative tool-like capability, while QwenPaw remains the primary orchestrator of the main conversation.
+Conceptually, this allows Orchestrator to treat an external agent as a cooperative tool-like capability, while Orchestrator remains the primary orchestrator of the main conversation.
 
 ### How to configure external runners
 
@@ -113,7 +113,7 @@ Before using an external runner, make sure you have installed an ACP-compatible 
 
 ![qwen](https://gw.alicdn.com/imgextra/i1/O1CN017f6aVo1tWpstPL4GK_!!6000000005910-2-tps-1226-408.png)
 
-Once the command-line side is ready, you can either configure a custom agent in QwenPaw or use one of the built-in agents for collaboration.
+Once the command-line side is ready, you can either configure a custom agent in Orchestrator or use one of the built-in agents for collaboration.
 
 External runners must be configured and enabled on the **Workspace → ACP** page before they can be used by `delegate_external_agent`.
 
@@ -170,7 +170,7 @@ The built-in delegation flow supports these action types:
 
 ### Permission handling
 
-When an external ACP runner asks for permission, QwenPaw does **not** decide on the user's behalf.
+When an external ACP runner asks for permission, Orchestrator does **not** decide on the user's behalf.
 
 Instead, it:
 
@@ -178,22 +178,22 @@ Instead, it:
 - shows the permission details and available options
 - waits for the user to choose how to proceed
 
-This keeps delegated ACP execution aligned with the same user-controlled safety model used elsewhere in QwenPaw.
+This keeps delegated ACP execution aligned with the same user-controlled safety model used elsewhere in Orchestrator.
 
 ### When to use ACP as a Tool
 
 Use this mode when:
 
-- you want QwenPaw to collaborate with another agent runtime
+- you want Orchestrator to collaborate with another agent runtime
 - you have a specialized external ACP-compatible runner for a certain class of tasks
-- you want to keep QwenPaw as the main orchestrator while delegating part of the work outward
+- you want to keep Orchestrator as the main orchestrator while delegating part of the work outward
 
 ### ACP Tool vs MCP
 
 ACP-as-Tool and MCP solve different problems:
 
-- **MCP** connects QwenPaw to external services and tool servers
-- **ACP as Tool** connects QwenPaw to an external **agent** runtime
+- **MCP** connects Orchestrator to external services and tool servers
+- **ACP as Tool** connects Orchestrator to an external **agent** runtime
 
 If you need APIs, databases, filesystems, or service integrations, use **MCP**.
 If you need agent-to-agent collaboration, use **ACP as Tool**.
@@ -202,11 +202,11 @@ If you need agent-to-agent collaboration, use **ACP as Tool**.
 
 ## ACP Server vs ACP Tool
 
-| Aspect               | QwenPaw as ACP Server                         | QwenPaw using ACP as Tool                              |
+| Aspect               | Orchestrator as ACP Server                         | Orchestrator using ACP as Tool                              |
 | -------------------- | --------------------------------------------- | ------------------------------------------------------ |
-| QwenPaw's role       | Server / target agent                         | Client / orchestrator                                  |
-| Connection direction | External client connects to QwenPaw           | QwenPaw connects to external runner                    |
-| Main purpose         | Let editors or external clients drive QwenPaw | Let QwenPaw delegate work to another agent             |
+| Orchestrator's role       | Server / target agent                         | Client / orchestrator                                  |
+| Connection direction | External client connects to Orchestrator           | Orchestrator connects to external runner                    |
+| Main purpose         | Let editors or external clients drive Orchestrator | Let Orchestrator delegate work to another agent             |
 | Typical entry point  | `qwenpaw acp`                                 | Delegation tool + ACP runner config                    |
 | Best for             | Editor integration, programmatic control      | Multi-agent collaboration, external specialist runners |
 
@@ -214,10 +214,10 @@ If you need agent-to-agent collaboration, use **ACP as Tool**.
 
 ## Summary
 
-ACP in QwenPaw is not just one feature — it supports both directions:
+ACP in Orchestrator is not just one feature — it supports both directions:
 
-- **Expose QwenPaw outward** as an ACP server
-- **Reach outward from QwenPaw** to external ACP agents as delegated tools
+- **Expose Orchestrator outward** as an ACP server
+- **Reach outward from Orchestrator** to external ACP agents as delegated tools
 
-If you are integrating QwenPaw into another client, start with **ACP Server**.
-If you want QwenPaw to coordinate with another agent runtime, use **ACP as Tool**.
+If you are integrating Orchestrator into another client, start with **ACP Server**.
+If you want Orchestrator to coordinate with another agent runtime, use **ACP as Tool**.

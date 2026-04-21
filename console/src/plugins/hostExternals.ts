@@ -2,7 +2,7 @@
  * hostExternals.ts
  *
  * Exposes shared host dependencies and a reactive plugin registry on
- * `window.QwenPaw` so plugin bundles can register routes and tool renderers
+ * `window.Orchestrator` so plugin bundles can register routes and tool renderers
  * without bundling their own copies of React / antd.
  *
  * Call `installHostExternals()` once at application startup (main.tsx).
@@ -20,7 +20,7 @@ declare const VITE_API_BASE_URL: string;
 // Public types
 // ─────────────────────────────────────────────────────────────────────────────
 
-/** Shared host dependencies exposed to plugin bundles via `window.QwenPaw.host`. */
+/** Shared host dependencies exposed to plugin bundles via `window.Orchestrator.host`. */
 export interface HostExternals {
   React: typeof React;
   ReactDOM: typeof ReactDOM;
@@ -141,7 +141,8 @@ export interface WindowNamespace {
 
 declare global {
   interface Window {
-    QwenPaw: WindowNamespace;
+    Orchestrator: WindowNamespace;
+    QwenPaw: WindowNamespace; // legacy alias — kept for third-party plugin compatibility
   }
 }
 
@@ -153,12 +154,12 @@ export function installHostExternals(): void {
   const apiBaseUrl =
     typeof VITE_API_BASE_URL !== "undefined" ? VITE_API_BASE_URL : "";
 
-  if (!window.QwenPaw) {
-    (window as any).QwenPaw = {} as WindowNamespace;
+  if (!(window as any).Orchestrator) {
+    (window as any).Orchestrator = {} as WindowNamespace;
   }
 
-  if (!window.QwenPaw.host) {
-    window.QwenPaw.host = {
+  if (!window.Orchestrator.host) {
+    window.Orchestrator.host = {
       React,
       ReactDOM,
       antd,
@@ -169,8 +170,8 @@ export function installHostExternals(): void {
     };
   }
 
-  if (!window.QwenPaw.registerRoutes) {
-    window.QwenPaw.registerRoutes = (pluginId, routes) => {
+  if (!window.Orchestrator.registerRoutes) {
+    window.Orchestrator.registerRoutes = (pluginId, routes) => {
       pluginSystem.addRoutes(pluginId, routes);
       console.info(
         `[plugin:${pluginId}] registerRoutes → ${routes.length} route(s)`,
@@ -178,8 +179,8 @@ export function installHostExternals(): void {
     };
   }
 
-  if (!window.QwenPaw.registerToolRender) {
-    window.QwenPaw.registerToolRender = (pluginId, renderers) => {
+  if (!window.Orchestrator.registerToolRender) {
+    window.Orchestrator.registerToolRender = (pluginId, renderers) => {
       pluginSystem.addToolRenderers(pluginId, renderers);
       console.info(
         `[plugin:${pluginId}] registerToolRender → ${Object.keys(
@@ -188,4 +189,8 @@ export function installHostExternals(): void {
       );
     };
   }
+
+  // Backwards-compatibility alias so existing third-party plugins using
+  // window.QwenPaw continue to work without modification.
+  (window as any).QwenPaw = window.Orchestrator;
 }

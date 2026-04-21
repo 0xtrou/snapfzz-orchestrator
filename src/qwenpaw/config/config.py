@@ -904,7 +904,7 @@ class AgentProfileConfig(BaseModel):
         description="Active model for this agent (provider_id + model)",
     )
     language: str = Field(
-        default="zh",
+        default="en",
         description="Language setting for this agent",
     )
     system_prompt_files: List[str] = Field(
@@ -955,7 +955,7 @@ class AgentsConfig(BaseModel):
     llm_routing: AgentsLLMRoutingConfig = Field(
         default_factory=AgentsLLMRoutingConfig,
     )
-    language: str = Field(default="zh")
+    language: str = Field(default="en")
     installed_md_files_language: Optional[str] = None
     system_prompt_files: List[str] = Field(
         default_factory=lambda: ["AGENTS.md", "SOUL.md", "PROFILE.md"],

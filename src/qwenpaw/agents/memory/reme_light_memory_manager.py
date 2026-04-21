@@ -467,7 +467,7 @@ See: https://docs.trychroma.com/docs/overview/troubleshooting#sqlite
         set_current_recent_max_bytes(recent_max_bytes)
 
         # Determine language based on agent config
-        language = getattr(agent_config, "language", "zh")
+        language = getattr(agent_config, "language", "en")
 
         # Get current date in YYYY-MM-DD format
         current_date = datetime.now().strftime("%Y-%m-%d")
@@ -535,7 +535,7 @@ See: https://docs.trychroma.com/docs/overview/troubleshooting#sqlite
 
     def _get_dream_prompt(
         self,
-        language: str = "zh",
+        language: str = "en",
         current_date: str = "",
     ) -> str:
         """Get the dream prompt based on language."""

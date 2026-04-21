@@ -7,7 +7,7 @@
  * Usage:
  *   1. Add to vite.config.ts: plugins: [vitePatchable()]
  *   2. Call in main.tsx: installHostExternals() and registerHostModules()
- *   3. Plugins access via: window.QwenPaw.modules["path/to/module"]
+ *   3. Plugins access via: window.Orchestrator.modules["path/to/module"]
  */
 
 import fs from "fs";
